@@ -1,0 +1,264 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: openrmf-nats
+  namespace: {{.Values.namespace}}
+  labels:
+    app.kubernetes.io/name: openrmf
+    helm.sh/chart: {{ .Chart.Name }}-{{ .Chart.Version }}
+    app.kubernetes.io/component: nats-server-2.1.0
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/revision: "{{ .Release.Revision }}"
+    app.kubernetes.io/version: "{{ .Chart.AppVersion }}"
+    app.kubernetes.io/managed-by: helm
+spec:
+  selector:
+    matchLabels:
+      run: openrmf-nats
+  replicas: 1
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        run: openrmf-nats
+    spec:
+      containers:
+      - name: openrmf-nats
+        image: docker.io/nats:{{.Values.natsImage}}
+        args: ["-m", "8222"]
+        ports:
+        - containerPort: 4222
+          protocol: TCP
+        - containerPort: 6222
+          protocol: TCP
+        - containerPort: 8222
+          protocol: TCP
+        resources:
+          limits:
+            memory: "250Mi"
+            cpu: "250m"
+          requests:
+            memory: "125Mi"
+            cpu: "125m"
+      restartPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: natsserver
+  namespace: {{.Values.namespace}}
+  labels:
+    app.kubernetes.io/name: openrmf
+    helm.sh/chart: {{ .Chart.Name }}-{{ .Chart.Version }}
+    app.kubernetes.io/component: server-2.1.0
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/revision: "{{ .Release.Revision }}"
+    app.kubernetes.io/version: "{{ .Chart.AppVersion }}"
+    app.kubernetes.io/managed-by: helm
+spec:
+  ports:
+  - name: nats
+    port: 4222
+    protocol: TCP
+    targetPort: 4222
+  - name: nats-metrics
+    port: 8222
+    protocol: TCP
+    targetPort: 8222
+  selector:
+    run: openrmf-nats
+  sessionAffinity: None
+  clusterIP: None
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: openrmf-natspromexporter
+  namespace: {{.Values.namespace}}
+  labels:
+    app.kubernetes.io/name: openrmf
+    helm.sh/chart: {{ .Chart.Name }}-{{ .Chart.Version }}
+    app.kubernetes.io/component: nats-prometheus-exporter
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/revision: "{{ .Release.Revision }}"
+    app.kubernetes.io/version: "{{ .Chart.AppVersion }}"
+    app.kubernetes.io/managed-by: helm
+spec:
+  selector:
+    matchLabels:
+      run: openrmf-natspromexporter
+  replicas: 1
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        run: openrmf-natspromexporter
+    spec:
+      containers:
+      - name: openrmf-natspromexporter
+        image: docker.io/synadia/prometheus-nats-exporter:0.16.0
+        args: ["-varz", "http://natsserver:8222"]
+        ports:
+        - containerPort: 7777
+          protocol: TCP
+        resources:
+          limits:
+            memory: "250Mi"
+            cpu: "250m"
+          requests:
+            memory: "125Mi"
+            cpu: "125m"
+      restartPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: openrmf-natspromexporter
+  namespace: {{.Values.namespace}}
+  labels:
+    app.kubernetes.io/name: openrmf
+    helm.sh/chart: {{ .Chart.Name }}-{{ .Chart.Version }}
+    app.kubernetes.io/component: openrmf-natspromexporter
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/revision: "{{ .Release.Revision }}"
+    app.kubernetes.io/version: "{{ .Chart.AppVersion }}"
+    app.kubernetes.io/managed-by: helm
+spec:
+  ports:
+  - name: natspromexporter
+    port: 7777
+    protocol: TCP
+    targetPort: 7777
+  selector:
+    run: openrmf-natspromexporter
+  sessionAffinity: None
+  clusterIP: None
+{{ if .Values.useprometheusoperator }}
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: openrmf-nats-metrics
+  namespace: {{.Values.namespace}}
+  labels:
+    app.kubernetes.io/name: openrmf
+    helm.sh/chart: {{ .Chart.Name }}-{{ .Chart.Version }}
+    app.kubernetes.io/component: nats-server-2.1.2
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/revision: "{{ .Release.Revision }}"
+    app.kubernetes.io/version: "{{ .Chart.AppVersion }}"
+    app.kubernetes.io/managed-by: helm
+    {{ .Values.servicemonitormatchlabelname }}: {{ .Values.servicemonitormatchlabelvalue }}
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/component: openrmf-natspromexporter
+  endpoints:
+  - port: natspromexporter
+    interval: 15s
+    path: /metrics
+  namespaceSelector:
+    matchNames:
+    - {{.Values.namespace}}
+{{ end }}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: openrmf-natsclientpromexporter
+  namespace: {{.Values.namespace}}
+  labels:
+    app.kubernetes.io/name: openrmf
+    helm.sh/chart: {{ .Chart.Name }}-{{ .Chart.Version }}
+    app.kubernetes.io/component: nats-client-prometheus-exporter
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/revision: "{{ .Release.Revision }}"
+    app.kubernetes.io/version: "{{ .Chart.AppVersion }}"
+    app.kubernetes.io/managed-by: helm
+spec:
+  selector:
+    matchLabels:
+      run: openrmf-natsclientpromexporter
+  replicas: 1
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        run: openrmf-natsclientpromexporter
+    spec:
+      containers:
+      - name: openrmf-natsclientpromexporter
+        image: docker.io/cingulara/nats-client-metrics:2.0.4
+        ports:
+        - containerPort: 7777
+          protocol: TCP
+        env:
+        - name: ASPNETCORE_ENVIRONMENT
+          value: Development
+        - name: ASPNETCORE_URLS
+          value: http://*:7778
+        - name: NATSMETRICSURL
+          value: http://natsserver:8222
+        resources:
+          limits:
+            memory: "250Mi"
+            cpu: "250m"
+          requests:
+            memory: "125Mi"
+            cpu: "125m"
+      restartPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: openrmf-natsclientpromexporter
+  namespace: {{.Values.namespace}}
+  labels:
+    app.kubernetes.io/name: openrmf
+    helm.sh/chart: {{ .Chart.Name }}-{{ .Chart.Version }}
+    app.kubernetes.io/component: openrmf-natsclientpromexporter
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/revision: "{{ .Release.Revision }}"
+    app.kubernetes.io/version: "{{ .Chart.AppVersion }}"
+    app.kubernetes.io/managed-by: helm
+spec:
+  ports:
+  - name: natsclientpromexporter
+    port: 7778
+    protocol: TCP
+    targetPort: 7778
+  selector:
+    run: openrmf-natsclientpromexporter
+  sessionAffinity: None
+  clusterIP: None
+{{ if .Values.useprometheusoperator }}
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: openrmf-nats-client-metrics
+  namespace: {{.Values.namespace}}
+  labels:
+    app.kubernetes.io/name: openrmf
+    helm.sh/chart: {{ .Chart.Name }}-{{ .Chart.Version }}
+    app.kubernetes.io/component: nats-client-metrics-1.0.1
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/revision: "{{ .Release.Revision }}"
+    app.kubernetes.io/version: "{{ .Chart.AppVersion }}"
+    app.kubernetes.io/managed-by: helm
+    {{ .Values.servicemonitormatchlabelname }}: {{ .Values.servicemonitormatchlabelvalue }}
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/component: openrmf-natsclientpromexporter
+  endpoints:
+  - port: natsclientpromexporter
+    interval: 15s
+    path: /metrics
+  namespaceSelector:
+    matchNames:
+    - {{.Values.namespace}}
+{{ end }}

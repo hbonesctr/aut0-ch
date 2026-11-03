@@ -1,0 +1,469 @@
+version : '3.8'
+ 
+services:
+### 1 Web Front End Container
+  openrmf-web:
+    image: docker.io/cingulara/openrmf-web:1.14.01
+    # image: cingulara/openrmf-web:1.14.01-privileged # this is to eventually make HTTPS 443 in a non-privileged manner
+    container_name: openrmf-web
+    restart: on-failure:5
+    ports:
+      - 8080:8080
+      # - 8443:8443
+    depends_on:
+      - openrmfapi-scoring
+      - openrmfapi-template
+      - openrmfapi-read
+      - openrmfapi-controls
+      - openrmfapi-audit
+      - openrmfapi-report
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:Z
+      # - ./ssl/:/etc/ssl/:Z
+    networks:
+      - openrmf
+
+### 6 API Containers
+  openrmfapi-scoring:
+    image: docker.io/cingulara/openrmf-api-scoring:1.14.02
+    container_name: openrmf-scoring-api
+    restart: on-failure:5
+    ports:
+      - "8090"
+    env_file: .env
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://*:8090
+      - DBCONNECTION=mongodb://openrmfscore:openrmf1234!@scoredb/openrmfscore?authSource=openrmfscore
+      - DBTYPE=mongo
+      - DB=openrmfscore
+      - LOGLEVEL=3
+    depends_on:
+      - scoredb
+    networks:
+      - openrmf
+  
+  openrmfapi-template:
+    image: docker.io/cingulara/openrmf-api-template:1.14.04
+    container_name: openrmf-template-api
+    restart: on-failure:5
+    ports:
+      - "8088"
+    env_file: .env
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://*:8088
+      - NATSSERVERURL=nats://natsserver:4222
+      - DBCONNECTION=mongodb://openrmftemplate:openrmf1234!@templatedb/openrmftemplate?authSource=openrmftemplate
+      - DB=openrmftemplate
+      - DBTYPE=mongo
+      - LOGLEVEL=3
+    depends_on:
+      - templatedb
+    networks:
+      - openrmf
+
+  openrmfapi-read:
+    image: docker.io/cingulara/openrmf-api-read:1.14.02
+    container_name: openrmf-read-api
+    restart: on-failure:5
+    ports:
+      - "8084"
+    env_file: .env
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://*:8084
+      - NATSSERVERURL=nats://natsserver:4222
+      - DBCONNECTION=mongodb://openrmf:openrmf1234!@checklistdb/openrmf?authSource=openrmf
+      - DB=openrmf
+      - DBTYPE=mongo
+      - LOGLEVEL=3
+    depends_on:
+      - checklistdb
+    networks:
+      - openrmf
+
+  openrmfapi-controls:
+    image: docker.io/cingulara/openrmf-api-controls:1.14.02
+    container_name: openrmf-controls-api
+    restart: on-failure:5
+    ports:
+      - "8094"
+    env_file: .env
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://*:8094
+      - NATSSERVERURL=nats://natsserver:4222
+      - LOGLEVEL=3
+    networks:
+      - openrmf
+
+  openrmfapi-audit:
+    image: docker.io/cingulara/openrmf-api-audit:1.14.02
+    container_name: openrmf-audit-api
+    restart: on-failure:5
+    ports:
+      - "8096"
+    env_file: .env
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://*:8096
+      - DBCONNECTION=mongodb://openrmfaudit:openrmf1234!@auditdb/openrmfaudit?authSource=openrmfaudit
+      - DB=openrmfaudit
+      - DBTYPE=mongo
+      - NATSSERVERURL=nats://natsserver:4222
+      - LOGLEVEL=3
+    depends_on:
+      - auditdb
+    networks:
+      - openrmf
+
+  openrmfapi-report:
+    image: docker.io/cingulara/openrmf-api-report:1.14.02
+    container_name: openrmf-report-api
+    restart: on-failure:5
+    ports:
+      - "8098"
+    env_file: .env
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://*:8098
+      - DBCONNECTION=mongodb://openrmfreport:openrmf1234!@reportdb/openrmfreport?authSource=openrmfreport
+      - DB=openrmfreport
+      - DBTYPE=mongo
+      - NATSSERVERURL=nats://natsserver:4222
+      - LOGLEVEL=3
+    depends_on:
+      - reportdb
+    networks:
+      - openrmf
+
+### 7 Messaging Containers
+  openrmfmsg-score:
+    image: docker.io/cingulara/openrmf-msg-score:1.14.01
+    container_name: openrmf-score-nats-message-client
+    restart: on-failure:5
+    environment:
+      - DBCONNECTION=mongodb://openrmfscore:openrmf1234!@scoredb/openrmfscore?authSource=openrmfscore
+      - DBTYPE=mongo
+      - DB=openrmfscore
+      - NATSSERVERURL=nats://natsserver:4222
+      - LOGLEVEL=3
+    depends_on:
+      - scoredb
+      - natsserver
+    networks:
+      - openrmf
+
+  openrmfmsg-compliance:
+    image: docker.io/cingulara/openrmf-msg-compliance:1.14.01
+    container_name: openrmf-compliance-nats-message-client
+    restart: on-failure:5
+    environment:
+      - NATSSERVERURL=nats://natsserver:4222
+      - LOGLEVEL=3
+    depends_on:
+      - natsserver
+    networks:
+      - openrmf
+
+  openrmfmsg-controls:
+    image: docker.io/cingulara/openrmf-msg-controls:1.14.01
+    container_name: openrmf-controls-nats-message-client
+    restart: on-failure:5
+    environment:
+      - NATSSERVERURL=nats://natsserver:4222
+      - LOGLEVEL=3
+    depends_on:
+      - natsserver
+    networks:
+      - openrmf
+
+  openrmfmsg-template:
+    image: docker.io/cingulara/openrmf-msg-template:1.14.01
+    container_name: openrmf-template-nats-message-client
+    restart: on-failure:5
+    environment:
+      - DBCONNECTION=mongodb://openrmftemplate:openrmf1234!@templatedb/openrmftemplate?authSource=openrmftemplate
+      - DB=openrmftemplate
+      - DBTYPE=mongo
+      - NATSSERVERURL=nats://natsserver:4222
+      - LOGLEVEL=3
+    depends_on:
+      - templatedb
+      - natsserver
+    networks:
+      - openrmf
+
+  openrmfmsg-system:
+    image: docker.io/cingulara/openrmf-msg-system:1.14.01
+    container_name: openrmf-system-nats-message-client
+    restart: on-failure:5
+    environment:
+      - DBCONNECTION=mongodb://openrmf:openrmf1234!@checklistdb/openrmf?authSource=openrmf
+      - DB=openrmf
+      - DBTYPE=mongo
+      - NATSSERVERURL=nats://natsserver:4222
+      - LOGLEVEL=3
+    depends_on:
+      - checklistdb
+      - natsserver
+    networks:
+      - openrmf
+
+  openrmfmsg-audit:
+    image: docker.io/cingulara/openrmf-msg-audit:1.14.01
+    container_name: openrmf-audit-nats-message-client
+    restart: on-failure:5
+    environment:
+      - DBCONNECTION=mongodb://openrmfaudit:openrmf1234!@auditdb/openrmfaudit?authSource=openrmfaudit
+      - DB=openrmfaudit
+      - DBTYPE=mongo
+      - NATSSERVERURL=nats://natsserver:4222
+      - LOGLEVEL=3
+    depends_on:
+      - auditdb
+      - natsserver
+    networks:
+      - openrmf
+
+  openrmfmsg-reports:
+    image: docker.io/cingulara/openrmf-msg-reports:1.14.01
+    container_name: openrmf-report-nats-message-client
+    restart: on-failure:5
+    environment:
+      - SYSTEMDBCONNECTION=mongodb://openrmf:openrmf1234!@checklistdb/openrmf?authSource=openrmf
+      - SYSTEMDB=openrmf
+      - SYSTEMDBTYPE=mongo
+      - REPORTDBCONNECTION=mongodb://openrmfreport:openrmf1234!@reportdb/openrmfreport?authSource=openrmfreport
+      - REPORTDB=openrmfreport
+      - REPORTDBTYPE=mongo
+      - NATSSERVERURL=nats://natsserver:4222
+      - LOGLEVEL=3
+    depends_on:
+      - checklistdb
+      - reportdb
+      - natsserver
+    networks:
+      - openrmf
+
+### 5 MongoDB Containers
+  checklistdb:
+    image: docker.io/cingulara/mongo:7.0.32-jammy-nonroot
+    container_name: mongodb-checklist
+    restart: on-failure:5
+    ports:
+      - "27017"
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=myp2ssw0rd
+      - MONGO_INITDB_DATABASE=openrmf
+    volumes:
+      - checklist-data-volume:/data/db
+      - ./initializeChecklist.js:/docker-entrypoint-initdb.d/initialize.js:Z
+    networks:
+      - openrmf
+
+  scoredb:
+    image: docker.io/cingulara/mongo:7.0.32-jammy-nonroot
+    container_name: mongodb-score
+    restart: on-failure:5
+    ports:
+      - "27017"
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=myp2ssw0rd
+      - MONGO_INITDB_DATABASE=openrmfscore
+    volumes:
+      - score-data-volume:/data/db
+      - ./initializeScore.js:/docker-entrypoint-initdb.d/initialize.js:Z
+    networks:
+      - openrmf
+
+  templatedb:
+    image: docker.io/cingulara/mongo:7.0.32-jammy-nonroot
+    container_name: mongodb-template
+    restart: on-failure:5
+    ports:
+      - "27017"
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=myp2ssw0rd
+      - MONGO_INITDB_DATABASE=openrmftemplate
+    volumes:
+      - template-data-volume:/data/db
+      - ./initializeTemplate.js:/docker-entrypoint-initdb.d/initialize.js:Z
+    networks:
+      - openrmf
+
+  auditdb:
+    image: docker.io/cingulara/mongo:7.0.32-jammy-nonroot
+    container_name: mongodb-audit
+    restart: on-failure:5
+    ports:
+      - "27017"
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=myp2ssw0rd
+      - MONGO_INITDB_DATABASE=openrmfaudit
+    volumes:
+      - audit-data-volume:/data/db
+      - ./initializeAudit.js:/docker-entrypoint-initdb.d/initialize.js:Z
+    networks:
+      - openrmf
+
+  reportdb:
+    image: docker.io/cingulara/mongo:7.0.32-jammy-nonroot
+    container_name: mongodb-report
+    restart: on-failure:5
+    ports:
+      - "27017"
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=myp2ssw0rd
+      - MONGO_INITDB_DATABASE=openrmfreport
+    volumes:
+      - report-data-volume:/data/db
+      - ./initializeReport.js:/docker-entrypoint-initdb.d/initialize.js:Z
+    networks:
+      - openrmf
+
+### NATS messaging container (internal)
+  natsserver: 
+    image: docker.io/nats:2.12.8-alpine3.22
+    container_name: nats
+    command: -m 8222
+    restart: on-failure:5
+    ports:
+      - "4222"
+      - "6222"
+      - "8222"
+    networks:
+      - openrmf
+
+### Metrics
+  natspromexporter: 
+    image: docker.io/natsio/prometheus-nats-exporter:0.19.2
+    container_name: nats-prometheus-exporter
+    command: -varz -connz -subz http://natsserver:8222
+    restart: on-failure:5
+    ports:
+      - "7777"
+    networks:
+      - openrmf
+
+  nats-client-metrics: 
+    image: docker.io/cingulara/nats-client-metrics:2.1.3
+    container_name: nats-client-metrics
+    restart: on-failure:5
+    ports:
+      - "7778"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://*:7778
+      - NATSMETRICSURL=http://natsserver:8222
+    networks:
+      - openrmf
+
+  nginx-metrics: 
+    image: docker.io/nginx/nginx-prometheus-exporter:1.5.1
+    container_name: nginx-metrics
+    restart: on-failure:1000
+    command:
+      - -nginx.scrape-uri
+      - http://openrmf-web:8080/status
+      # - https://openrmf-web:8443/status
+    ports:
+      - "9113"
+    # environment:
+    #   - SSL_VERIFY=false # do not verify on any SSL self signed cert for the web UI
+    networks:
+      - openrmf
+
+  prometheus:
+    image: docker.io/prom/prometheus:v3.10.0
+    container_name: prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--web.enable-lifecycle'
+    restart: on-failure:5
+    ports:
+      - "9090"
+    volumes:
+      - openrmf-prometheus-data-volume:/prometheus # persist the data
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml:Z
+    networks:
+      - openrmf
+
+  grafana: 
+    image: docker.io/grafana/grafana:11.6.13-ubuntu
+    container_name: grafana
+    env_file: .grafana
+    restart: on-failure:5
+    ports:
+      - "3000"
+    volumes:
+      - openrmf-grafana-data-volume:/var/lib/grafana # persist the data
+      - ./grafana/dashboards/:/etc/grafana/provisioning/dashboards/:Z
+      - ./grafana/datasources/:/etc/grafana/provisioning/datasources/:Z
+    networks:
+      - openrmf
+
+  postgres16:
+    image: docker.io/postgres:16.13-alpine3.23
+    container_name: openrmf-postgres16
+    restart: on-failure:5
+    ports:
+      - "5432"
+    environment:
+      - POSTGRES_DB=openrmf-keycloak 
+      - POSTGRES_USER=openrmf-keycloak 
+      - POSTGRES_PASSWORD=p2sst1rn0g
+    networks:
+      - openrmf
+    volumes:
+      - keycloak-postgres16:/var/lib/postgresql/data
+
+  keycloak: 
+    container_name: openrmf-keycloak
+    image: docker.io/cingulara/keycloak-openrmf:26.5.7
+    restart: on-failure:10
+    command:
+      - start
+      - --spi-theme-welcome-theme=openrmf
+    ports:
+      - "8080"
+    environment:
+      - KC_DB=postgres
+      - KC_DB_URL=jdbc:postgresql://openrmf-postgres16:5432/openrmf-keycloak
+      - KC_DB_USERNAME=openrmf-keycloak
+      - KC_DB_PASSWORD=p2sst1rn0g
+      - KEYCLOAK_ADMIN=admin
+      - KEYCLOAK_ADMIN_PASSWORD=admin
+      - KC_HOSTNAME_STRICT=false
+      - KC_PROXY_HEADERS=xforwarded
+      - KC_HTTP_RELATIVE_PATH=/auth
+      - KC_HTTP_ENABLED=true
+      - KC_HTTP_PORT=8080
+      - KC_HEALTH_ENABLED=true
+      - KC_METRICS_ENABLED=true
+      # - KC_LOG_LEVEL=DEBUG
+    depends_on:
+      - postgres16
+    networks:
+      - openrmf
+
+### put all the volume listings here for persistent data
+volumes:
+  template-data-volume:
+  checklist-data-volume:
+  score-data-volume:
+  audit-data-volume:
+  report-data-volume:
+  openrmf-prometheus-data-volume:
+  openrmf-grafana-data-volume:
+  keycloak-postgres16:
+
+### put all the networks here
+networks:
+  openrmf:

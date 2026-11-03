@@ -1,0 +1,169 @@
+services:
+  web:
+    image: docker.io/nginxinc/nginx-unprivileged:1.29.8-alpine3.23
+    container_name: openrmf-web
+    command: [nginx-debug, '-g', 'daemon off;']
+    restart: on-failure:10
+    ports:
+      - 8080:8080
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - keycloak
+    networks:
+      - openrmf-local
+
+  mongo:
+    image: docker.io/cingulara/mongo:7.0.32-jammy-nonroot
+    container_name: mongodb
+    restart: on-failure:10
+    ports:
+      - 27017:27017
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=myp2ssw0rd
+      - MONGO_INITDB_DATABASE=openrmf
+    volumes:
+      - ./initializedbs.js:/docker-entrypoint-initdb.d/initialize.js:ro
+    networks:
+      - openrmf-local
+
+  nats: 
+    image: docker.io/nats:2.12.8-alpine3.22
+    container_name: nats
+    command: -m 8222
+    restart: on-failure:10
+    ports:
+      - 4222:4222
+      - 6222:6222
+      - 8222:8222
+    networks:
+      - openrmf-local
+
+  natspromexporter: 
+    image: docker.io/natsio/prometheus-nats-exporter:0.19.2
+    container_name: nats-exporter-prometheus
+    command: -varz -connz -subz http://nats:8222
+    restart: on-failure:10
+    ports:
+      - 7777:7777
+    networks:
+      - openrmf-local
+
+  nats-client-metrics: 
+    image: docker.io/cingulara/nats-client-metrics:2.1.1
+    container_name: nats-client-metrics
+    restart: on-failure:10
+    ports:
+      - 7778:7778
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://*:7778
+      - NATSMETRICSURL=http://nats:8222
+    networks:
+      - openrmf-local
+
+  nginx-metrics: 
+    image: docker.io/nginx/nginx-prometheus-exporter:1.5.1
+    container_name: nginx-metrics
+    restart: on-failure:1000
+    command:
+      - -nginx.scrape-uri
+      - http://openrmf-web:8080/status
+    ports:
+      - 9113:9113
+    networks:
+      - openrmf-local
+
+  prometheus:
+    image: docker.io/prom/prometheus:v3.10.0
+    container_name: prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--web.enable-lifecycle'
+    restart: on-failure:10
+    ports:
+      - 9090:9090
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml:ro
+    networks:
+      - openrmf-local
+
+  grafana: 
+    image: docker.io/grafana/grafana:11.6.13-ubuntu
+    container_name: grafana
+    env_file: .grafana
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=1qaz2WSX3edc4RFVgr@fana
+    restart: on-failure:10
+    ports:
+      - 3000:3000
+    volumes:
+      - ../grafana/dashboards/:/etc/grafana/provisioning/dashboards/:ro
+      - ../grafana/datasources/:/etc/grafana/provisioning/datasources/:ro
+    networks:
+      - openrmf-local
+
+  mongo-express:
+    image: docker.io/mongo-express:1.0.2-20-alpine3.19
+    container_name: mongo-express
+    restart: on-failure:10
+    ports:
+      - 8081:8081
+    environment:
+      - ME_CONFIG_MONGODB_SERVER=mongo
+      - ME_CONFIG_MONGODB_ADMINUSERNAME=root
+      - ME_CONFIG_MONGODB_ADMINPASSWORD=myp2ssw0rd
+      - ME_CONFIG_BASICAUTH_USERNAME=admin
+      - ME_CONFIG_BASICAUTH_PASSWORD=admin
+    networks:
+      - openrmf-local
+
+  postgres16:
+    image: docker.io/postgres:16.13-alpine3.23
+    container_name: openrmf-postgres16
+    restart: on-failure:5
+    ports:
+      - "5432"
+    environment:
+      - POSTGRES_DB=openrmf-keycloak 
+      - POSTGRES_USER=openrmf-keycloak 
+      - POSTGRES_PASSWORD=p2sst1rn0g
+    networks:
+      - openrmf-local
+    volumes:
+      - keycloak-postgres16:/var/lib/postgresql/data
+
+  keycloak: 
+    container_name: openrmf-keycloak
+    image: docker.io/cingulara/keycloak-openrmf:26.5.7
+    restart: on-failure:10
+    command: start --optimized --spi-theme-welcome-theme=openrmf
+    # command: start --optimized --spi-theme-welcome-theme=openrmf --spi-theme-static-max-age=-1 --spi-theme-cache-themes=false --spi-theme-cache-templates=false
+    ports:
+      - "8080"
+    environment:
+      - KC_DB=postgres
+      - KC_DB_URL=jdbc:postgresql://openrmf-postgres16:5432/openrmf-keycloak
+      - KC_DB_USERNAME=openrmf-keycloak
+      - KC_DB_PASSWORD=p2sst1rn0g
+      - KEYCLOAK_ADMIN=admin
+      - KEYCLOAK_ADMIN_PASSWORD=admin
+      - KC_HOSTNAME_STRICT=false
+      - KC_HOSTNAME_STRICT_HTTPS=false
+      - KC_PROXY_HEADERS=xforwarded
+      - KC_HTTP_RELATIVE_PATH=/auth
+      - KC_HTTP_ENABLED=true
+      - KC_HTTP_PORT=8080
+    depends_on:
+      - postgres16
+    networks:
+      - openrmf-local
+
+### put all the networks here
+networks:
+  openrmf-local:
+
+### put all the volume listings here for persistent data
+volumes:
+  keycloak-postgres16:

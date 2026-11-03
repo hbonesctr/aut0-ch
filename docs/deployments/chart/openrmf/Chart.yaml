@@ -1,0 +1,17 @@
+apiVersion: v1
+name: openrmf
+version: 1.14.00
+description: The OpenRMF(R) OSS web application to manage DoD STIGs, Nessus scans and NIST Risk Management Framework Compliance
+keywords:
+  - RMF
+  - OpenRMF
+  - openrmf
+  - risk management framework
+maintainers:
+  - name: Dale Bingham
+    email: dale.bingham@cingulara.com
+  - name: David Gould
+    email: dgould@tutelasec.com
+engine: gotpl 
+appVersion: 1.14.00
+deprecated: false
