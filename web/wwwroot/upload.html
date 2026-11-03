@@ -127,7 +127,7 @@
                     </div>
                     <div class="form-group">
                       <button type="button"
-                        title="Upload your checklists (CKL) and SCAP scan result (XML) to create or update your checklists"
+                        title="Upload your checklists (CKL or CKLB) and SCAP scan result (XML) to create or update your checklists"
                         onclick="uploadChecklist(); return false;" class="btn btn-primary">Upload and Save</button>
                     </div>
                   </form>
@@ -141,14 +141,16 @@
                   <h3><i class="fa fa-help"></i> SCAP / Checklist Upload Help</h3>
                 </div>
                 <div class="card-body">
-                  <p>Use this form to upload a new *.CKL STIG checklist file or SCAP Scan XCCDF *.XML to the system for
+                  <p>Use this form to upload a new *.CKL or *.CKLB (STIG Viewer 3) STIG checklist file or SCAP Scan XCCDF *.XML to the system for
                     scoring, indexing, and managing
-                    your STIG information. Select your system and then select up to ten (10) *.CKL or *.XML files to
+                    your STIG information. Select your system and then select up to ten (10) *.CKL, *.CKLB or *.XML files to
                     upload at a time.
                     DISA SCAP, OpenSCAP as well as Nessus SCAP files should work fine.</p>
                   <p>All fields are mandatory. One Checklist per CKL file. CKL files are produced by the <a
                       target="_blank" rel="noopener noreferrer" href="https://public.cyber.mil/stigs/">DISA StigViewer
                       application</a> available on their public website.</p>
+                  <p>A STIG Viewer 3 *.CKLB file that holds several STIGs is split into one checklist per STIG.
+                    CKLB-only data (UUIDs, group tree, timestamps) is not kept.</p>
                   <p>* Please fill in the <b><i>Hostname</i></b> field on your Checklist file CKL! All checklists are
                     named by HOSTNAME-STIGTYPE-VERSION-REVISION and then if it is a web or database, the SITE and INSTANCE as well.</p>
                 </div><!-- end card body -->
@@ -260,14 +262,14 @@
             $('#checklistFile').filer({
               limit: 10,
               maxSize: 30,
-              extensions: ['ckl', 'xml'],
+              extensions: ['ckl', 'cklb', 'xml'],
               changeInput: true,
               showThumbs: true,
               addMore: true,
               captions: {
                 errors: {
                   filesLimit: "Only {{fi-limit}} files are allowed to be uploaded at a time.",
-                  filesType: "Only Checklist *.CKL and SCAP scan XCCDF *.XML files can be uploaded.",
+                  filesType: "Only Checklist *.CKL / *.CKLB and SCAP scan XCCDF *.XML files can be uploaded.",
                   filesSize: "{{fi-name}} is too large! Please upload a file up to {{fi-maxSize}} MB.",
                   filesSizeAll: "Files you have chosen are too large! Please upload a file up to {{fi-maxSize}} MB."
                 }

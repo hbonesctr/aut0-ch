@@ -10,6 +10,7 @@ The Upload page is available to users with the Administrator or Editor role assi
 
 1. You can upload a CKL checklist file made from the NIWC STIGViewer. The process of making a CKL is outlined in Tutela's [blog post here](https://medium.com/@dgould_43957/how-to-use-disa-stig-viewer-tool-907358d17cea). 
 2. You also can upload a SCAP (DoD or Nessus SCAP) scan result in XCCDF XML format. 
+   You can also upload a STIG Viewer 3 checklist (`.cklb`). It is converted to the CKL format on upload, and a CKLB holding several STIGs becomes one checklist per STIG. CKLB-only data (UUIDs, group tree, timestamps) is not kept.
 3. Or you can upload a CKL file as a User Template for others to start from and create their checklist for the appropriate system technology. 
 
 > Note: The Nessus Patch Management scan results file `*.nessus` is uploaded when you add or edit a System Package, not via the Upload page. 

@@ -136,6 +136,18 @@ namespace openrmf_read_api.Controllers
                         checklistRecords = ChecklistLoader.LoadMultipleChecklistTypes(checklistFile.rawChecklist);
                       }
                     }
+                    else if (file.FileName.ToLower().EndsWith(".cklb")) {
+                      // AUT0-CH: STIG Viewer 3 CKLB (JSON) -- convert each STIG to CKL XML, then reuse the CKL pipeline
+                      _logger.LogInformation("UploadNewChecklist() parsing the Checklist CKLB file for {0}.", file.FileName.ToLower());
+                      string rawCklb;
+                      using (var reader = new StreamReader(file.OpenReadStream()))
+                      {
+                          rawCklb = reader.ReadToEnd();
+                      }
+                      foreach (string convertedCkl in CklbConverter.ToCklList(rawCklb)) {
+                        checklistRecords.AddRange(ChecklistLoader.LoadMultipleChecklistTypes(convertedCkl));
+                      }
+                    }
                     else {
                       // log this is a bad file
                       return BadRequest();
