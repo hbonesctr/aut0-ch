@@ -139,22 +139,26 @@ namespace openrmf_read_api.Classes
             StigData(w, "Rule_ID", ruleId);
             StigData(w, "Rule_Ver", Str(rule, "rule_version"));
             StigData(w, "Rule_Title", Str(rule, "rule_title"));
-            StigData(w, "Vuln_Discuss", Str(rule, "discussion"));
-            StigData(w, "IA_Controls", Str(rule, "ia_controls"));
+            // DISA ships "discussion" as the raw XCCDF description: <VulnDiscussion>text</VulnDiscussion><FalsePositives>...
+            // CKL keeps only the VulnDiscussion text; the other embedded tags back-fill empty rule fields.
+            string discussion = Str(rule, "discussion");
+            string Field(string jsonName, string embeddedTag) => FirstNonEmpty(Str(rule, jsonName), EmbeddedTag(discussion, embeddedTag));
+            StigData(w, "Vuln_Discuss", EmbeddedTag(discussion, "VulnDiscussion") ?? discussion);
+            StigData(w, "IA_Controls", Field("ia_controls", "IAControls"));
             StigData(w, "Check_Content", Str(rule, "check_content"));
             StigData(w, "Fix_Text", Str(rule, "fix_text"));
-            StigData(w, "False_Positives", Str(rule, "false_positives"));
-            StigData(w, "False_Negatives", Str(rule, "false_negatives"));
-            StigData(w, "Documentable", FirstNonEmpty(Str(rule, "documentable"), "false"));
-            StigData(w, "Mitigations", Str(rule, "mitigations"));
-            StigData(w, "Potential_Impact", Str(rule, "potential_impacts"));
-            StigData(w, "Third_Party_Tools", Str(rule, "third_party_tools"));
-            StigData(w, "Mitigation_Control", Str(rule, "mitigation_control"));
-            StigData(w, "Responsibility", Str(rule, "responsibility"));
-            StigData(w, "Security_Override_Guidance", Str(rule, "security_override_guidance"));
+            StigData(w, "False_Positives", Field("false_positives", "FalsePositives"));
+            StigData(w, "False_Negatives", Field("false_negatives", "FalseNegatives"));
+            StigData(w, "Documentable", FirstNonEmpty(Field("documentable", "Documentable"), "false"));
+            StigData(w, "Mitigations", Field("mitigations", "Mitigations"));
+            StigData(w, "Potential_Impact", Field("potential_impacts", "PotentialImpacts"));
+            StigData(w, "Third_Party_Tools", Field("third_party_tools", "ThirdPartyTools"));
+            StigData(w, "Mitigation_Control", Field("mitigation_control", "MitigationControl"));
+            StigData(w, "Responsibility", Field("responsibility", "Responsibility"));
+            StigData(w, "Security_Override_Guidance", Field("security_override_guidance", "SeverityOverrideGuidance"));
             StigData(w, "Check_Content_Ref", checkRef);
             StigData(w, "Weight", FirstNonEmpty(Str(rule, "weight"), "10.0"));
-            StigData(w, "Class", FirstNonEmpty(Str(rule, "classification"), "Unclass"));
+            StigData(w, "Class", NormalizeClass(Str(rule, "classification")));
             StigData(w, "STIGRef", stigRef);
             StigData(w, "TargetKey", FirstNonEmpty(Str(rule, "target_key"), targetKey));
             StigData(w, "STIG_UUID", FirstNonEmpty(Str(rule, "stig_uuid"), stigUuid));
@@ -202,6 +206,29 @@ namespace openrmf_read_api.Classes
                 case "medium": case "cat ii": case "cat_ii": return "medium";
                 default: return string.IsNullOrWhiteSpace(severity) ? "medium" : severity.Trim().ToLowerInvariant();
             }
+        }
+
+        /// <summary>STIG Viewer 2 writes the rule class as "Unclass"; CKLB uses "Unclassified".</summary>
+        private static string NormalizeClass(string value)
+        {
+            if (string.IsNullOrWhiteSpace(value) || value.Trim().StartsWith("unclass", StringComparison.OrdinalIgnoreCase))
+                return "Unclass";
+            return value.Trim();
+        }
+
+        /// <summary>
+        /// Return the text between &lt;tag&gt; and &lt;/tag&gt; in a DISA XCCDF description string, or null if the tag
+        /// is not there. Only the named tag is matched, so literal text such as "&lt;path&gt;" inside it is left alone.
+        /// </summary>
+        public static string EmbeddedTag(string text, string tag)
+        {
+            if (string.IsNullOrEmpty(text)) return null;
+            string open = "<" + tag + ">", close = "</" + tag + ">";
+            int start = text.IndexOf(open, StringComparison.Ordinal);
+            if (start < 0) return null;
+            start += open.Length;
+            int end = text.IndexOf(close, start, StringComparison.Ordinal);
+            return end < 0 ? null : text.Substring(start, end - start).Trim();
         }
 
         /// <summary>

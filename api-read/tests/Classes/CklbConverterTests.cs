@@ -230,6 +230,39 @@ public class CklbConverterTests
         Assert.Equal(4, ckl.STIGS.iSTIG.VULN.Count);
     }
 
+    // Shape taken from a DISA-published RHEL 9 V2R10 CKLB: discussion is the raw XCCDF description.
+    private const string DisaStyle = @"{
+  ""target_data"": { ""target_type"": ""Computing"", ""host_name"": """", ""role"": ""None"", ""is_web_database"": false, ""classification"": null },
+  ""stigs"": [ { ""stig_name"": ""Red Hat Enterprise Linux 9 Security Technical Implementation Guide"", ""version"": ""2"",
+    ""release_info"": ""Release: 10 Benchmark Date: 30 Sep 2026"", ""reference_identifier"": """",
+    ""rules"": [ {
+      ""group_id"": ""V-257777"", ""rule_id_src"": ""SV-257777r1268251_rule"", ""rule_id"": ""SV-257777r1268251"",
+      ""rule_version"": ""RHEL-09-211010"", ""severity"": ""high"", ""classification"": ""Unclassified"",
+      ""discussion"": ""<VulnDiscussion>Use the <path> argument & keep it supported.</VulnDiscussion><FalsePositives></FalsePositives><FalseNegatives></FalseNegatives><Documentable>false</Documentable><Mitigations>Embedded mitigation</Mitigations><SeverityOverrideGuidance></SeverityOverrideGuidance><PotentialImpacts></PotentialImpacts><ThirdPartyTools></ThirdPartyTools><MitigationControl></MitigationControl><Responsibility></Responsibility><IAControls></IAControls>"",
+      ""mitigations"": """", ""documentable"": ""false"",
+      ""check_content_ref"": { ""href"": ""Red_Hat_Enterprise_Linux_9_STIG.xml"", ""name"": ""M"" },
+      ""legacy_ids"": [], ""ccis"": [""CCI-000366""], ""status"": ""not_reviewed"", ""overrides"": {} } ] } ]
+}";
+
+    [Fact]
+    public void DisaDiscussion_KeepsOnlyVulnDiscussionText_AndBackfillsEmbeddedFields()
+    {
+        var v = LoadFirst(DisaStyle).STIGS.iSTIG.VULN[0];
+        Assert.Equal("Use the <path> argument & keep it supported.", Attr(v, "Vuln_Discuss"));
+        Assert.Equal("Embedded mitigation", Attr(v, "Mitigations"));
+        Assert.Equal("Unclass", Attr(v, "Class"));
+        Assert.Equal("SV-257777r1268251_rule", Attr(v, "Rule_ID"));
+        Assert.Equal("Not_Reviewed", v.STATUS);
+        Assert.Equal("", v.SEVERITY_OVERRIDE);
+    }
+
+    [Fact]
+    public void EmbeddedTag_ReturnsNullWhenMissing()
+    {
+        Assert.Equal(null, CklbConverter.EmbeddedTag("plain text", "VulnDiscussion"));
+        Assert.Equal("x", CklbConverter.EmbeddedTag("<A>x</A>", "A"));
+    }
+
     [Fact]
     public void ControlCharacters_AreStripped_NotFatal()
     {
