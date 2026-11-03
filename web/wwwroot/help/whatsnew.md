@@ -4,7 +4,7 @@ title: What's New
 nav_order: 2
 ---
 
-# What's New with AUT0-CH<sup>&reg;</sup>
+# What's New with AUT0-CH
 
 Please refer to the <a href="https://github.com/Cingulara?tab=projects" target="_blank">AUT0-CH Projects listing on GitHub</a> for more information on feature updates and timeline.
 
