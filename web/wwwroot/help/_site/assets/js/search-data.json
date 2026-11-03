@@ -67,13 +67,13 @@
   },"11": {
     "doc": "Step 6 - Compliance Report",
     "title": "Generating your System’s Compliance Report",
-    "content": "Running a compliance report across all your checklists is a gigantic effort when done manually! If you do this across all Checklist files using the Java Viewer this can be quite time consuming. Or you have to keep track of the data in yet another media format such as MS Word or Excel. When all your checklists are in OpenRMF® OSS, you can run a compliance report against the impact level (Low, Moderate, High) as well as the inclusion of personally identifiable information (PII) for your system. Choose your system and the pertinent details and click the Generate button. In a matter of seconds you have a listing of compliance against all your checklists for the relevant NIST controls. There is a summary presented that gives you an overall compliance by family. And below that there is a detailed view by control linked to the checklists. ",
+    "content": "Running a compliance report across all your checklists is a gigantic effort when done manually! If you do this across all Checklist files using the Java Viewer this can be quite time consuming. Or you have to keep track of the data in yet another media format such as MS Word or Excel. When all your checklists are in AUT0-CH, you can run a compliance report against the impact level (Low, Moderate, High) as well as the inclusion of personally identifiable information (PII) for your system. Choose your system and the pertinent details and click the Generate button. In a matter of seconds you have a listing of compliance against all your checklists for the relevant NIST controls. There is a summary presented that gives you an overall compliance by family. And below that there is a detailed view by control linked to the checklists. ",
     "url": "/help/compliance.html#generating-your-systems-compliance-report",
     "relUrl": "/compliance.html#generating-your-systems-compliance-report"
   },"12": {
     "doc": "Step 6 - Compliance Report",
     "title": "Viewing Compliance Results",
-    "content": "The data in the compliance report is presented in a filterable table that is common across OpenRMF® OSS. Pagination is in the bottom right corner and there is a search filter at the top right of the table as well to quickly find your information. Each result is listed per NIST major control and checklist and is color coded according to the overall status of that control within the checklist. Click on the checklist in the compliance result table to quickly view the checklist through the lens of only that control with a filtered vulnerability listing relevant only to that control. This allows you to view the vulnerability items that remain open or not reviewed to quickly tackle your RMF action items. ",
+    "content": "The data in the compliance report is presented in a filterable table that is common across AUT0-CH. Pagination is in the bottom right corner and there is a search filter at the top right of the table as well to quickly find your information. Each result is listed per NIST major control and checklist and is color coded according to the overall status of that control within the checklist. Click on the checklist in the compliance result table to quickly view the checklist through the lens of only that control with a filtered vulnerability listing relevant only to that control. This allows you to view the vulnerability items that remain open or not reviewed to quickly tackle your RMF action items. ",
     "url": "/help/compliance.html#viewing-compliance-results",
     "relUrl": "/compliance.html#viewing-compliance-results"
   },"13": {
@@ -90,8 +90,8 @@
     "relUrl": "/compliance.html"
   },"15": {
     "doc": "Step 3 - Your Dashboard",
-    "title": "Your OpenRMF® OSS Dashboard",
-    "content": ". The initial OpenRMF® OSS dashboard shows the total checklists, total systems, and total templates within the system at the very top of the page. Underneath that are two sections: one for Nessus / ACAS Patch scan data and one for Checklist open vulnerability data. The Critical and High Findings allow you to select a system (independently from other sections on this page) and see the numbers for Critical, High, and Medium severity items. You can export the summary data of the Nessus file on the System page itself. This dashboard just gives you the high level numbers by system. If there is no Nessus scan file uploaded, the dashboard will notify you of that as well. You must have a Nessus patch scan file (*.nessus) loaded for this to work for your system. The SCAP Scans &amp; Checklists area allows you to quickly see the total number of High, Medium, and Low open items across all your checklists for the system selected. Click on any of these to go to the System to view all items, checklists, and system level data. Future enhancements will allow setting of items on the dashboard to your liking as well as show alerts, status, dates, and valid user information. ",
+    "title": "Your AUT0-CH Dashboard",
+    "content": ". The initial AUT0-CH dashboard shows the total checklists, total systems, and total templates within the system at the very top of the page. Underneath that are two sections: one for Nessus / ACAS Patch scan data and one for Checklist open vulnerability data. The Critical and High Findings allow you to select a system (independently from other sections on this page) and see the numbers for Critical, High, and Medium severity items. You can export the summary data of the Nessus file on the System page itself. This dashboard just gives you the high level numbers by system. If there is no Nessus scan file uploaded, the dashboard will notify you of that as well. You must have a Nessus patch scan file (*.nessus) loaded for this to work for your system. The SCAP Scans &amp; Checklists area allows you to quickly see the total number of High, Medium, and Low open items across all your checklists for the system selected. Click on any of these to go to the System to view all items, checklists, and system level data. Future enhancements will allow setting of items on the dashboard to your liking as well as show alerts, status, dates, and valid user information. ",
     "url": "/help/dashboard.html#your-openrmf-oss-dashboard",
     "relUrl": "/dashboard.html#your-openrmf-oss-dashboard"
   },"16": {
@@ -101,117 +101,117 @@
     "url": "/help/dashboard.html",
     "relUrl": "/dashboard.html"
   },"17": {
-    "doc": "OpenRMF Introduction",
-    "title": "OpenRMF® OSS Introduction",
-    "content": "Welcome to the OpenRMF® OSS help site. This site contains help screens, scenarios, screenshots and other useful information to use the OpenRMF® OSS application for you and your team. OpenRMF® OSS is the first web-based open source tool to manage your DoD STIG checklists, generate NIST compliance, keep track of your security items that are Open or Not Reviewed, and massively shrink your timeline to collect data and submit for an ATO! . Compare this to the manual way you have to manage STIG Checklists and SCAP scans, outlined in Tutela’s blog post. See What’s New with the latest version. ",
+    "doc": "AUT0-CH Introduction",
+    "title": "AUT0-CH Introduction",
+    "content": "Welcome to the AUT0-CH help site. This site contains help screens, scenarios, screenshots and other useful information to use the AUT0-CH application for you and your team. AUT0-CH is the first web-based open source tool to manage your DoD STIG checklists, generate NIST compliance, keep track of your security items that are Open or Not Reviewed, and massively shrink your timeline to collect data and submit for an ATO! . Compare this to the manual way you have to manage STIG Checklists and SCAP scans, outlined in Tutela’s blog post. See What’s New with the latest version. ",
     "url": "/help/#openrmf-oss-introduction",
     "relUrl": "/#openrmf-oss-introduction"
   },"18": {
-    "doc": "OpenRMF Introduction",
+    "doc": "AUT0-CH Introduction",
     "title": "What it does",
-    "content": "OpenRMF® OSS manages your RMF documentation and removes the Cybersecurity mystery! It allows management to view the status of checklists and RMF progress on their systems. It allows IT administrators and developers to store their checklists and scans in a single place. It allows cybersecurity analysts to see the status of systems in a quick glance. And it allows assessors to have a single place to view the system and all its checklists so their job is more organized. It has great use cases for everyone! Most importantly: It greatly minimizes the manual nature of managing all this data for you! . Some of the high level features are below: . | 100% web based | 100% Open Source Software (OSS) | Upload a DISA Checklist CKL, DISA SCAP XCCDF format file or Nessus SCAP XCCDF format file easily to visualize your RMF process | Upload a .Nessus ACAS scan file to see Patch summary of Critical and High items | Automatically organizes your checklists by system | Single source of truth for your system checklists | Single source of truth for your latest Nessus patch scans | Live online editing of your checklist through your web browser with auditing of the changes | Bulk editing of Vulnerabilities across similar Checklist Types within a System | One-click creation of your POA&amp;M for your entire system (all servers, devices, SCAP scans, manual checklists) | One-click creation of your Test Plan Summary for your entire system (all servers, devices, SCAP scans, manual checklists) | Interactive Reports and Searching of Nessus scan data | Interactive Reports and Searching of System and checklist vulnerability data | Easily find errors and deltas across checklists in your system | Easily run a compliance report in seconds for your Low, Moderate, or High system | Management insight into Cybersecurity Status and Security Posture instantly | AuthN, AuthZ, and Role Based Access Control (RBAC) to control access to read as well as edit data | Run on premise, on a local machine, or in the cloud (testing on Raspberry Pi 4 now) | Containerized to run locally, in a container runtime, or in Kubernetes | . ",
+    "content": "AUT0-CH manages your RMF documentation and removes the Cybersecurity mystery! It allows management to view the status of checklists and RMF progress on their systems. It allows IT administrators and developers to store their checklists and scans in a single place. It allows cybersecurity analysts to see the status of systems in a quick glance. And it allows assessors to have a single place to view the system and all its checklists so their job is more organized. It has great use cases for everyone! Most importantly: It greatly minimizes the manual nature of managing all this data for you! . Some of the high level features are below: . | 100% web based | 100% Open Source Software (OSS) | Upload a DISA Checklist CKL, DISA SCAP XCCDF format file or Nessus SCAP XCCDF format file easily to visualize your RMF process | Upload a .Nessus ACAS scan file to see Patch summary of Critical and High items | Automatically organizes your checklists by system | Single source of truth for your system checklists | Single source of truth for your latest Nessus patch scans | Live online editing of your checklist through your web browser with auditing of the changes | Bulk editing of Vulnerabilities across similar Checklist Types within a System | One-click creation of your POA&amp;M for your entire system (all servers, devices, SCAP scans, manual checklists) | One-click creation of your Test Plan Summary for your entire system (all servers, devices, SCAP scans, manual checklists) | Interactive Reports and Searching of Nessus scan data | Interactive Reports and Searching of System and checklist vulnerability data | Easily find errors and deltas across checklists in your system | Easily run a compliance report in seconds for your Low, Moderate, or High system | Management insight into Cybersecurity Status and Security Posture instantly | AuthN, AuthZ, and Role Based Access Control (RBAC) to control access to read as well as edit data | Run on premise, on a local machine, or in the cloud (testing on Raspberry Pi 4 now) | Containerized to run locally, in a container runtime, or in Kubernetes | . ",
     "url": "/help/#what-it-does",
     "relUrl": "/#what-it-does"
   },"19": {
-    "doc": "OpenRMF Introduction",
-    "title": "Why use OpenRMF® OSS",
-    "content": "The current way to implement the Risk Management Framework for your DoD Authority to Operate is VERY manual and VERY, VERY slow. VERY slow. It is driven by disparate pieces of a Java Viewer for checklists, massive amounts of MS Excel spreadsheets for viewing the checklists for management, MS Word documents, various PDF files, your own home grown applications to help automate pieces of this process, and more. Information is shared (hopefully!) via email and shared folders. And there is no one central place for developers, operations, management, and cybersecurity analysts to see the most up to date information that is needed to eventually submit to eMASS. That changes with OpenRMF® OSS! . OpenRMF® OSS solves this dilemma. All you need is a web browser to view the pertinent information on your checklists within your system. Checklists are grouped by system and quickly show information such as the number of Category 1, 2, and 3 items as well as the number of Open items versus the Not a Finding “closed” items. Without having to open every single checklist file in the heavy Java viewer DISA provides. OpenRMF® OSS helps in several ways: . | It is 100% browser based for all the major browsers (Chrome, Edge, Firefox, Safari, IE 11) | You can import multiple checklists for a single source-of-truth for all checklists | You can organize and manage your data by systems for a quicker, less stress filled way to see your system’s risk profile | Reports for management highlight the most asked question on status and numbers of items by type | You can run a single compliance report across all your checklists based on the Low/Moderate/High label as well as PII data included | You can export any checklists to Excel or download a CKL file for viewing in the DISA Java Viewer | You can drill down to your problem areas across all your checklists quickly with a few clicks and get actionable data quickly | . With coming updates such as automating the Risk Assessment Report, automating the POA&amp;M on fixes, as well as online editing of checklist status and comments OpenRMF® OSS is the app any DoD IT / Developer / Operations / Cybersecurity professional needs! . More information can be found in our product PDF on our website. ",
+    "doc": "AUT0-CH Introduction",
+    "title": "Why use AUT0-CH",
+    "content": "The current way to implement the Risk Management Framework for your DoD Authority to Operate is VERY manual and VERY, VERY slow. VERY slow. It is driven by disparate pieces of a Java Viewer for checklists, massive amounts of MS Excel spreadsheets for viewing the checklists for management, MS Word documents, various PDF files, your own home grown applications to help automate pieces of this process, and more. Information is shared (hopefully!) via email and shared folders. And there is no one central place for developers, operations, management, and cybersecurity analysts to see the most up to date information that is needed to eventually submit to eMASS. That changes with AUT0-CH! . AUT0-CH solves this dilemma. All you need is a web browser to view the pertinent information on your checklists within your system. Checklists are grouped by system and quickly show information such as the number of Category 1, 2, and 3 items as well as the number of Open items versus the Not a Finding “closed” items. Without having to open every single checklist file in the heavy Java viewer DISA provides. AUT0-CH helps in several ways: . | It is 100% browser based for all the major browsers (Chrome, Edge, Firefox, Safari, IE 11) | You can import multiple checklists for a single source-of-truth for all checklists | You can organize and manage your data by systems for a quicker, less stress filled way to see your system’s risk profile | Reports for management highlight the most asked question on status and numbers of items by type | You can run a single compliance report across all your checklists based on the Low/Moderate/High label as well as PII data included | You can export any checklists to Excel or download a CKL file for viewing in the DISA Java Viewer | You can drill down to your problem areas across all your checklists quickly with a few clicks and get actionable data quickly | . With coming updates such as automating the Risk Assessment Report, automating the POA&amp;M on fixes, as well as online editing of checklist status and comments AUT0-CH is the app any DoD IT / Developer / Operations / Cybersecurity professional needs! . More information can be found in our product PDF on our website. ",
     "url": "/help/#why-use-openrmf-oss",
     "relUrl": "/#why-use-openrmf-oss"
   },"20": {
-    "doc": "OpenRMF Introduction",
+    "doc": "AUT0-CH Introduction",
     "title": "Architecture",
     "content": "Below is the top level architecture as of version 1.8 and beyond, drawn via Draw.io’s great tool (now Diagrams.net). ",
     "url": "/help/#architecture",
     "relUrl": "/#architecture"
   },"21": {
-    "doc": "OpenRMF Introduction",
+    "doc": "AUT0-CH Introduction",
     "title": "OpenRMF Introduction",
     "content": " ",
     "url": "/help/",
     "relUrl": "/"
   },"22": {
-    "doc": "OpenRMF Metrics",
-    "title": "Using Prometheus and Grafana for OpenRMF® OSS Metrics",
-    "content": "OpenRMF® OSS tracks metrics used by Prometheus. We currently use the https://github.com/prometheus-net/prometheus-net component for the .NET Core Web APIs and the https://github.com/nats-io/prometheus-nats-exporter container for exporting NATS 2.0 metrics out to a Prometheus endpoint. With that information, you can setup the below Grafana dashboards to show usage, memory, requests, errors, and the like. The docker-compose file for running OpenRMF® OSS locally uses a container definition for Prometheus and Grafana locally. The Kubernetes deployment does not. For Kubernetes you can hook to your existing Prometheus and Grafana setup. Or you can deploy separately to namespaces within Kubernetes and then setup the data sources there. For now you have to initially setup the Grafana dashboards. Starting with version 0.14 we use a volume to store the data correctly so you can set it and forget it. ",
+    "doc": "AUT0-CH Metrics",
+    "title": "Using Prometheus and Grafana for AUT0-CH Metrics",
+    "content": "AUT0-CH tracks metrics used by Prometheus. We currently use the https://github.com/prometheus-net/prometheus-net component for the .NET Core Web APIs and the https://github.com/nats-io/prometheus-nats-exporter container for exporting NATS 2.0 metrics out to a Prometheus endpoint. With that information, you can setup the below Grafana dashboards to show usage, memory, requests, errors, and the like. The docker-compose file for running AUT0-CH locally uses a container definition for Prometheus and Grafana locally. The Kubernetes deployment does not. For Kubernetes you can hook to your existing Prometheus and Grafana setup. Or you can deploy separately to namespaces within Kubernetes and then setup the data sources there. For now you have to initially setup the Grafana dashboards. Starting with version 0.14 we use a volume to store the data correctly so you can set it and forget it. ",
     "url": "/help/metrics.html#using-prometheus-and-grafana-for-openrmf-oss-metrics",
     "relUrl": "/metrics.html#using-prometheus-and-grafana-for-openrmf-oss-metrics"
   },"23": {
-    "doc": "OpenRMF Metrics",
+    "doc": "AUT0-CH Metrics",
     "title": ".NET Core Default Metrics",
     "content": "Once you have Prometheus setup, you can use the https://grafana.com/grafana/dashboards/10427 to display .NET Core metrics like the below chart. ",
     "url": "/help/metrics.html#net-core-default-metrics",
     "relUrl": "/metrics.html#net-core-default-metrics"
   },"24": {
-    "doc": "OpenRMF Metrics",
+    "doc": "AUT0-CH Metrics",
     "title": ".NET Core API Controller Metrics",
     "content": "Once you have Prometheus setup, you can use the https://grafana.com/grafana/dashboards/10915 to display .NET Core metrics like the below chart. ",
     "url": "/help/metrics.html#net-core-api-controller-metrics",
     "relUrl": "/metrics.html#net-core-api-controller-metrics"
   },"25": {
-    "doc": "OpenRMF Metrics",
+    "doc": "AUT0-CH Metrics",
     "title": "NATS Server Metrics",
     "content": "Once you have Prometheus setup and you deploy the container for https://github.com/nats-io/prometheus-nats-exporter, you can use the https://grafana.com/grafana/dashboards/2279 to display NATS Server Core metrics like the below chart. ",
     "url": "/help/metrics.html#nats-server-metrics",
     "relUrl": "/metrics.html#nats-server-metrics"
   },"26": {
-    "doc": "OpenRMF Metrics",
+    "doc": "AUT0-CH Metrics",
     "title": "NATS Client Connection Metrics",
     "content": "I made a NATS metrics dashboard at https://github.com/Cingulara/nats-client-metrics that goes down to the client level. The default NATS dashboard for Grafana keeps everything at a server level for bytes in and out, messages in and out, etc. I wanted per client. So go to that URL above and add that dashboard referenced in the JSON file to your Prometheus if you want NATS client metrics. ",
     "url": "/help/metrics.html#nats-client-connection-metrics",
     "relUrl": "/metrics.html#nats-client-connection-metrics"
   },"27": {
-    "doc": "OpenRMF Metrics",
+    "doc": "AUT0-CH Metrics",
     "title": "Web Interface Metrics",
-    "content": "There is also an NGINX default dashboard in the included dashboards with Grafana packaged with OpenRMF® OSS v1.7 and beyond as well. That will show activity for the user interace of the application. ",
+    "content": "There is also an NGINX default dashboard in the included dashboards with Grafana packaged with AUT0-CH v1.7 and beyond as well. That will show activity for the user interace of the application. ",
     "url": "/help/metrics.html#web-interface-metrics",
     "relUrl": "/metrics.html#web-interface-metrics"
   },"28": {
-    "doc": "OpenRMF Metrics",
+    "doc": "AUT0-CH Metrics",
     "title": "Prometheus Configuration Setup",
-    "content": "The prometheus.yml file configuration we use when running the local or docker-compose setup of OpenRMF® OSS is here. You can adjust the interval and options as required. Just restart the docker-compose up -d command to relaunch and use the new configuration. See the OpenRMF OSS Metrics in GitHub information to understand how we use those tools within OpenRMF® OSS. ",
+    "content": "The prometheus.yml file configuration we use when running the local or docker-compose setup of AUT0-CH is here. You can adjust the interval and options as required. Just restart the docker-compose up -d command to relaunch and use the new configuration. See the OpenRMF OSS Metrics in GitHub information to understand how we use those tools within AUT0-CH. ",
     "url": "/help/metrics.html#prometheus-configuration-setup",
     "relUrl": "/metrics.html#prometheus-configuration-setup"
   },"29": {
-    "doc": "OpenRMF Metrics",
+    "doc": "AUT0-CH Metrics",
     "title": "Additional Links",
     "content": "Prometheus: https://prometheus.io/docs/prometheus/latest/querying/basics/ . Grafana: https://grafana.com/ . ",
     "url": "/help/metrics.html#additional-links",
     "relUrl": "/metrics.html#additional-links"
   },"30": {
-    "doc": "OpenRMF Metrics",
+    "doc": "AUT0-CH Metrics",
     "title": "OpenRMF Metrics",
     "content": " ",
     "url": "/help/metrics.html",
     "relUrl": "/metrics.html"
   },"31": {
-    "doc": "Navigation in OpenRMF",
-    "title": "The OpenRMF® OSS User Interface at a Glance",
-    "content": ". The main navigation is based on the Pike Admin responsive template. Once you login you have a menu of options on the left. Click the hamburger 3-line icon to make this menu collapse down to just icons. In the top far right are two icons. The help icon launches the OpenRMF® OSS Docs site in GitHub.io. The second icon in that row is the person icon. Click that to find the User Profile and Logout links. The User Profile opens the Keycloak user profile page that is explained on the User Profile page. And the logout link will remove your session and take you to the logout page. ",
+    "doc": "Navigation in AUT0-CH",
+    "title": "The AUT0-CH User Interface at a Glance",
+    "content": ". The main navigation is based on the Pike Admin responsive template. Once you login you have a menu of options on the left. Click the hamburger 3-line icon to make this menu collapse down to just icons. In the top far right are two icons. The help icon launches the AUT0-CH Docs site in GitHub.io. The second icon in that row is the person icon. Click that to find the User Profile and Logout links. The User Profile opens the Keycloak user profile page that is explained on the User Profile page. And the logout link will remove your session and take you to the logout page. ",
     "url": "/help/navigation.html#the-openrmf-oss-user-interface-at-a-glance",
     "relUrl": "/navigation.html#the-openrmf-oss-user-interface-at-a-glance"
   },"32": {
-    "doc": "Navigation in OpenRMF",
+    "doc": "Navigation in AUT0-CH",
     "title": "Accessing Online Help",
-    "content": ". The GitHub.io page for OpenRMF® is this site here. This is linked into the help icon in the menu bar on each page in the top right of the screen. ",
+    "content": ". The GitHub.io page for AUT0-CH is this site here. This is linked into the help icon in the menu bar on each page in the top right of the screen. ",
     "url": "/help/navigation.html#accessing-online-help",
     "relUrl": "/navigation.html#accessing-online-help"
   },"33": {
-    "doc": "Navigation in OpenRMF",
-    "title": "Navigation in OpenRMF",
+    "doc": "Navigation in AUT0-CH",
+    "title": "Navigation in AUT0-CH",
     "content": " ",
     "url": "/help/navigation.html",
     "relUrl": "/navigation.html"
   },"34": {
     "doc": "User Permissions",
-    "title": "OpenRMF® OSS Roles and Permissions",
-    "content": "OpenRMF® OSS uses Roles to allow permissions on the front end user interface as well as the backend API calls for interaction with the data and features. Anyone that has a role has that role for all of the system packages for the entire installation. So be careful when you give out roles to people as they will have that role for every single system package. ",
+    "title": "AUT0-CH Roles and Permissions",
+    "content": "AUT0-CH uses Roles to allow permissions on the front end user interface as well as the backend API calls for interaction with the data and features. Anyone that has a role has that role for all of the system packages for the entire installation. So be careful when you give out roles to people as they will have that role for every single system package. ",
     "url": "/help/permissions.html#openrmf-oss-roles-and-permissions",
     "relUrl": "/permissions.html#openrmf-oss-roles-and-permissions"
   },"35": {
     "doc": "User Permissions",
     "title": "Types of Roles",
-    "content": "There are 4 main types of Roles (out of 5) in OpenRMF® OSS used in the application: . ",
+    "content": "There are 4 main types of Roles (out of 5) in AUT0-CH used in the application: . ",
     "url": "/help/permissions.html#types-of-roles",
     "relUrl": "/permissions.html#types-of-roles"
   },"36": {
@@ -251,79 +251,79 @@
     "url": "/help/permissions.html",
     "relUrl": "/permissions.html"
   },"42": {
-    "doc": "OpenRMF Reports",
-    "title": "Available Reports in OpenRMF® OSS",
-    "content": "Currently there are 10 interactive reports in OpenRMF® OSS as pictured below. ",
+    "doc": "AUT0-CH Reports",
+    "title": "Available Reports in AUT0-CH",
+    "content": "Currently there are 10 interactive reports in AUT0-CH as pictured below. ",
     "url": "/help/reports.html#available-reports-in-openrmf-oss",
     "relUrl": "/reports.html#available-reports-in-openrmf-oss"
   },"43": {
-    "doc": "OpenRMF Reports",
+    "doc": "AUT0-CH Reports",
     "title": "Nessus Patch Listing Report",
     "content": "If you have a Nessus (*.nessus) / ACAS scan result file imported for your system package, this report will show all data in an interactive table. You can sort the columns, use the Search box to filter data, and click the + icon to see more/less of the detailed data per scan result item. ",
     "url": "/help/reports.html#nessus-patch-listing-report",
     "relUrl": "/reports.html#nessus-patch-listing-report"
   },"44": {
-    "doc": "OpenRMF Reports",
+    "doc": "AUT0-CH Reports",
     "title": "System Score Chart",
     "content": "This is a larger chart used for exporting and viewing the total items in a system package by status. The Open items are also further separated by Category 1, 2, and 3 specifically. ",
     "url": "/help/reports.html#system-score-chart",
     "relUrl": "/reports.html#system-score-chart"
   },"45": {
-    "doc": "OpenRMF Reports",
+    "doc": "AUT0-CH Reports",
     "title": "System Checklist Vulnerability Report",
     "content": "This report allows you to select a system package to load all available checklists. Choose an checklist and click the Run Report button to see all vulnerability data in an interactive table format. You can order columns, use the Search box to filter the information, and click the + icon to see more detailed information on the vulnerability. ",
     "url": "/help/reports.html#system-checklist-vulnerability-report",
     "relUrl": "/reports.html#system-checklist-vulnerability-report"
   },"46": {
-    "doc": "OpenRMF Reports",
+    "doc": "AUT0-CH Reports",
     "title": "Host Vulnerability Report",
     "content": "This report lets you search on a vulnerability and see what hosts and checklists have that vulnerability across all checklists within your system package. ",
     "url": "/help/reports.html#host-vulnerability-report",
     "relUrl": "/reports.html#host-vulnerability-report"
   },"47": {
-    "doc": "OpenRMF Reports",
+    "doc": "AUT0-CH Reports",
     "title": "Vulnerability by Status &amp; Severity Report",
     "content": "This report lets you choose your system package, then pick the statuses and severities of vulnerabilities you wish to view. Click the Run Report button to view the results. Click the green + sign to get more detail on the vulnerabilities. ",
     "url": "/help/reports.html#vulnerability-by-status--severity-report",
     "relUrl": "/reports.html#vulnerability-by-status--severity-report"
   },"48": {
-    "doc": "OpenRMF Reports",
+    "doc": "AUT0-CH Reports",
     "title": "Checklist Upgrades Available Report",
     "content": "This report lets you choose your system package, then goes one-by-one through the checklists and runs them against the Templates listing to see if there is an updated version or release of your checklist available. If so, it will display it. Click the checklist and go to the checklist record to upgrade your checklist accordingly. ",
     "url": "/help/reports.html#checklist-upgrades-available-report",
     "relUrl": "/reports.html#checklist-upgrades-available-report"
   },"49": {
-    "doc": "OpenRMF Reports",
+    "doc": "AUT0-CH Reports",
     "title": "Vulnerabilities with Override Status Set",
     "content": "This report lets you choose your system package, and then shows all vulnerabilities where the Severity Override has been set different than the actual severity (if any). ",
     "url": "/help/reports.html#vulnerabilities-with-override-status-set",
     "relUrl": "/reports.html#vulnerabilities-with-override-status-set"
   },"50": {
-    "doc": "OpenRMF Reports",
+    "doc": "AUT0-CH Reports",
     "title": "Checklist Activity Report",
     "content": "This report lets you select a system package and then show the date of creation or last update to show how stale your data may be. ",
     "url": "/help/reports.html#checklist-activity-report",
     "relUrl": "/reports.html#checklist-activity-report"
   },"51": {
-    "doc": "OpenRMF Reports",
+    "doc": "AUT0-CH Reports",
     "title": "Host by RMF Control Report",
     "content": "This report lets you search on a system package and major RMF control and see what servers, workstations, devices, etc. relate to that control across all your checklists. ",
     "url": "/help/reports.html#host-by-rmf-control-report",
     "relUrl": "/reports.html#host-by-rmf-control-report"
   },"52": {
-    "doc": "OpenRMF Reports",
+    "doc": "AUT0-CH Reports",
     "title": "RMF Controls Listing Report",
     "content": "This report lists out the controls and subcontrols across the RMF control listing to let you have more detailed information on what it represents. ",
     "url": "/help/reports.html#rmf-controls-listing-report",
     "relUrl": "/reports.html#rmf-controls-listing-report"
   },"53": {
-    "doc": "OpenRMF Reports",
+    "doc": "AUT0-CH Reports",
     "title": "A Note on Refreshing Data",
-    "content": "The Nessus Patch Listing and Host Vulnerability Report use the Report API and Report Database to return results quickly. The data is already formatted in a way for very fast retrieval, especially across system packages with large numbers of checklists and Nessus Patch data. This data uses an “eventual consistency” pattern. When a new or updated checklist or scan is loaded into OpenRMF® OSS, a separate process is kicked off behind the scenes so you can get back to the OpenRMF® OSS interface. This process, as an example, pulls the Nessus ACAS Patch data report, parses the data, and puts separate records of the scan results into a particular MongoDB collection for later reporting. “Eventual” does not mean hours later! But it does mean you need to give it processing time. For scans of 4 or 5 machines we are talking a minute or two. For a large system package of 100 hosts being scanned, the time required would be more on the lines of 15 minutes or so to process all the data. This of course depends on the amount of data in the scan, the type of scans, the amount of processing power you give OpenRMF® OSS and the amount of CPU and Memory in particular you give the Report Message client if you are running something like Kubernetes. Right now only those 2 reports use the Report API and database with eventual consistency. There may be more in the future. To learn more about this design choice see https://martinfowler.com/articles/microservice-trade-offs.html. ",
+    "content": "The Nessus Patch Listing and Host Vulnerability Report use the Report API and Report Database to return results quickly. The data is already formatted in a way for very fast retrieval, especially across system packages with large numbers of checklists and Nessus Patch data. This data uses an “eventual consistency” pattern. When a new or updated checklist or scan is loaded into AUT0-CH, a separate process is kicked off behind the scenes so you can get back to the AUT0-CH interface. This process, as an example, pulls the Nessus ACAS Patch data report, parses the data, and puts separate records of the scan results into a particular MongoDB collection for later reporting. “Eventual” does not mean hours later! But it does mean you need to give it processing time. For scans of 4 or 5 machines we are talking a minute or two. For a large system package of 100 hosts being scanned, the time required would be more on the lines of 15 minutes or so to process all the data. This of course depends on the amount of data in the scan, the type of scans, the amount of processing power you give AUT0-CH and the amount of CPU and Memory in particular you give the Report Message client if you are running something like Kubernetes. Right now only those 2 reports use the Report API and database with eventual consistency. There may be more in the future. To learn more about this design choice see https://martinfowler.com/articles/microservice-trade-offs.html. ",
     "url": "/help/reports.html#a-note-on-refreshing-data",
     "relUrl": "/reports.html#a-note-on-refreshing-data"
   },"54": {
-    "doc": "OpenRMF Reports",
+    "doc": "AUT0-CH Reports",
     "title": "OpenRMF Reports",
     "content": " ",
     "url": "/help/reports.html",
@@ -361,7 +361,7 @@
   },"60": {
     "doc": "Step 4 - View System Packages",
     "title": "Uploading Nessus ACAS Scans",
-    "content": ". Once you have a System Package record, you can click the Edit button for the system to upload a *.nessus file for your scan output. OpenRMF® OSS will save your file (a single file for the OSS version) and generate export listing for the whole system or by host into MS Excel files. You also can run reports on the Nessus file based on your system in the Reports area. The Dashboard will also show the total number of Critical, High, Medium, and Low items once your have uploaded a .nessus file as well. Remember, OpenRMF® OSS stores a single file. So upload the most up-to-date file that has all your servers in the listing. More Information Here: https://docs.tenable.com/nessus/Content/PatchManagement.htm . ",
+    "content": ". Once you have a System Package record, you can click the Edit button for the system to upload a *.nessus file for your scan output. AUT0-CH will save your file (a single file for the OSS version) and generate export listing for the whole system or by host into MS Excel files. You also can run reports on the Nessus file based on your system in the Reports area. The Dashboard will also show the total number of Critical, High, Medium, and Low items once your have uploaded a .nessus file as well. Remember, AUT0-CH stores a single file. So upload the most up-to-date file that has all your servers in the listing. More Information Here: https://docs.tenable.com/nessus/Content/PatchManagement.htm . ",
     "url": "/help/systems.html#uploading-nessus-acas-scans",
     "relUrl": "/systems.html#uploading-nessus-acas-scans"
   },"61": {
@@ -373,7 +373,7 @@
   },"62": {
     "doc": "Using Template Checklists",
     "title": "Using Templates for your Checklists",
-    "content": "There are 2 types of templates in OpenRMF® OSS. The default DISA templates that are available from their https://public.cyber.mil/stigs/ public listing website. And then there are User Templates that you can upload as a starting point for checklists. User Templates can be from other CKL files you have updated to use as a boilerplate, a custom checklist you make in OpenRMF® Professional, or from a default DISA one you have added some special text or details to. In the OpenRMF OSS we include the latest default public (i.e. non-PKI required) DISA checklists as templates in our template component. That way you have them for SCAP scans to associate reults into checklists. All default DISA templates have everthing as Not Reviewed so we do not calculate the score on the DISA default templates to speed up page loading. Check the What’s New listing for the version and the latest DISA checklist templates we have included in that version. User Templates are added via the Upload page in the Template Upload area. The User Template listing are user templates that those with permissions have added. The Template name as well as the score of items are shown simimlar to the Checklist listing page. Click the linked Template to view the detailed information. Click the green plus sign to view the scoring based on category. For User Templates, we calculate the score of the template for you based on vulnerabilities. You can use DISA or User Templates in OpenRMF® OSS for a starting point for your checklists. A great example would be you have an infrastructure package and a platform-as-a-service package that your application(s) run on. That infrastructure and PaaS have known good checklists as a baseline that application owners use as a starting point and adjust the remaining vulnerability items accordingly. On the Checklist Template page showing the individual checklist template, you can see the vulnerabilities. You also can click the Create Checklist button to make a new checklist based on the template in a system package you select. IT, Cyber, and other personnel would fill in checklists based on this checklist template when added as a checklist in your system package, and then fill out remaining items based on their software or system. ",
+    "content": "There are 2 types of templates in AUT0-CH. The default DISA templates that are available from their https://public.cyber.mil/stigs/ public listing website. And then there are User Templates that you can upload as a starting point for checklists. User Templates can be from other CKL files you have updated to use as a boilerplate, a custom checklist you make in OpenRMF® Professional, or from a default DISA one you have added some special text or details to. In the OpenRMF OSS we include the latest default public (i.e. non-PKI required) DISA checklists as templates in our template component. That way you have them for SCAP scans to associate reults into checklists. All default DISA templates have everthing as Not Reviewed so we do not calculate the score on the DISA default templates to speed up page loading. Check the What’s New listing for the version and the latest DISA checklist templates we have included in that version. User Templates are added via the Upload page in the Template Upload area. The User Template listing are user templates that those with permissions have added. The Template name as well as the score of items are shown simimlar to the Checklist listing page. Click the linked Template to view the detailed information. Click the green plus sign to view the scoring based on category. For User Templates, we calculate the score of the template for you based on vulnerabilities. You can use DISA or User Templates in AUT0-CH for a starting point for your checklists. A great example would be you have an infrastructure package and a platform-as-a-service package that your application(s) run on. That infrastructure and PaaS have known good checklists as a baseline that application owners use as a starting point and adjust the remaining vulnerability items accordingly. On the Checklist Template page showing the individual checklist template, you can see the vulnerabilities. You also can click the Create Checklist button to make a new checklist based on the template in a system package you select. IT, Cyber, and other personnel would fill in checklists based on this checklist template when added as a checklist in your system package, and then fill out remaining items based on their software or system. ",
     "url": "/help/templates.html#using-templates-for-your-checklists",
     "relUrl": "/templates.html#using-templates-for-your-checklists"
   },"63": {
@@ -390,7 +390,7 @@
     "relUrl": "/uploading.html#uploading-checklists-and-templates"
   },"65": {
     "doc": "Step 2 - Uploading",
-    "title": "Process of Uploading SCAP results (XCCDF format .xml) or CKL files (.ckl) in OpenRMF® OSS",
+    "title": "Process of Uploading SCAP results (XCCDF format .xml) or CKL files (.ckl) in AUT0-CH",
     "content": ". | DISA SCAP Scan Information | Tennable’s Nessus SCAP Scan Information | . ",
     "url": "/help/uploading.html#process-of-uploading-scap-results-xccdf-format-xml-or-ckl-files-ckl-in-openrmf-oss",
     "relUrl": "/uploading.html#process-of-uploading-scap-results-xccdf-format-xml-or-ckl-files-ckl-in-openrmf-oss"
@@ -403,13 +403,13 @@
   },"67": {
     "doc": "Step 2 - Uploading",
     "title": "Uploading Templates",
-    "content": ". You can upload a checklist file as a Template to start from within the system as well. You can use Templates in OpenRMF® OSS for a starting point for your checklists. A great example would be you have an infrastructure package and a platform-as-a-service package that your application(s) run on. That infrastructure and PaaS have known good checklists as a baseline that application owners use as a starting point and adjust the remaining vulnerability items accordingly. IT personnel would download this template and then fill out remaining items based on their software or system. To upload you go to the Template Upload section and enter a title and description for the template. Then click the Choose file and upload the template. You can only upload one template at a time. ",
+    "content": ". You can upload a checklist file as a Template to start from within the system as well. You can use Templates in AUT0-CH for a starting point for your checklists. A great example would be you have an infrastructure package and a platform-as-a-service package that your application(s) run on. That infrastructure and PaaS have known good checklists as a baseline that application owners use as a starting point and adjust the remaining vulnerability items accordingly. IT personnel would download this template and then fill out remaining items based on their software or system. To upload you go to the Template Upload section and enter a title and description for the template. Then click the Choose file and upload the template. You can only upload one template at a time. ",
     "url": "/help/uploading.html#uploading-templates",
     "relUrl": "/uploading.html#uploading-templates"
   },"68": {
     "doc": "Step 2 - Uploading",
     "title": "Uploading Nessus / ACAS Scans",
-    "content": ". Once you have a System Package record, you can click the Edit button for the system to upload a *.nessus file for your scan output. OpenRMF® OSS will save your file (a single file for the OSS version) and generate export listing for the whole system or by host into MS Excel files. You also can run reports on the Nessus file based on your system in the Reports area. The Dashboard will also show the total number of Critical, High, Medium, and Low items once your have uploaded a .nessus file as well. Remember, OpenRMF® OSS stores a single file. So upload the most up-to-date file that has all your servers in the listing. ",
+    "content": ". Once you have a System Package record, you can click the Edit button for the system to upload a *.nessus file for your scan output. AUT0-CH will save your file (a single file for the OSS version) and generate export listing for the whole system or by host into MS Excel files. You also can run reports on the Nessus file based on your system in the Reports area. The Dashboard will also show the total number of Critical, High, Medium, and Low items once your have uploaded a .nessus file as well. Remember, AUT0-CH stores a single file. So upload the most up-to-date file that has all your servers in the listing. ",
     "url": "/help/uploading.html#uploading-nessus--acas-scans",
     "relUrl": "/uploading.html#uploading-nessus--acas-scans"
   },"69": {
@@ -420,32 +420,32 @@
     "relUrl": "/uploading.html"
   },"70": {
     "doc": "User Profile",
-    "title": "Your OpenRMF® OSS User Profile",
-    "content": "Currently, OpenRMF® OSS uses Keycloak for AuthN and Authz as well as role based access control (RBAC) for the application. You can view the Run Latest Development for information on setting up Keycloak. The specific user information for using Keycloak and OpenRMF® OSS is below. ",
+    "title": "Your AUT0-CH User Profile",
+    "content": "Currently, AUT0-CH uses Keycloak for AuthN and Authz as well as role based access control (RBAC) for the application. You can view the Run Latest Development for information on setting up Keycloak. The specific user information for using Keycloak and AUT0-CH is below. ",
     "url": "/help/users.html#your-openrmf-oss-user-profile",
     "relUrl": "/users.html#your-openrmf-oss-user-profile"
   },"71": {
     "doc": "User Profile",
     "title": "Register as a User",
-    "content": "You can register as a new user with the registration form. You also can use the GitHub integration on the OpenRMF® OSS Demo site to register as well. Enter the pertinent information including a valid email and you are automatically added as a Reader to the application. Once you have a registered account you can login with your user/password combination or the GitHub integration if on the Demo website. ",
+    "content": "You can register as a new user with the registration form. You also can use the GitHub integration on the AUT0-CH Demo site to register as well. Enter the pertinent information including a valid email and you are automatically added as a Reader to the application. Once you have a registered account you can login with your user/password combination or the GitHub integration if on the Demo website. ",
     "url": "/help/users.html#register-as-a-user",
     "relUrl": "/users.html#register-as-a-user"
   },"72": {
     "doc": "User Profile",
     "title": "User Profile",
-    "content": ". To access your User Profile from within OpenRMF® OSS click the person icon in the very far right top of the application screens. Then click the Profile link. You are redirected to the Keycloak User Profile screen based on your session. From here you can see your account information and update your name and email. You also can change your password and see what sessions your account currently has active. To return to the OpenRMF® OSS application you can click the “Back to OpenRMF® OSS Login” in the top right of the screen. Or if you wish, click the Sign Out link to log out. ",
+    "content": ". To access your User Profile from within AUT0-CH click the person icon in the very far right top of the application screens. Then click the Profile link. You are redirected to the Keycloak User Profile screen based on your session. From here you can see your account information and update your name and email. You also can change your password and see what sessions your account currently has active. To return to the AUT0-CH application you can click the “Back to AUT0-CH Login” in the top right of the screen. Or if you wish, click the Sign Out link to log out. ",
     "url": "/help/users.html",
     "relUrl": "/users.html"
   },"73": {
     "doc": "User Profile",
     "title": "MultiFactor Authentication - Authenticator",
-    "content": ". For further security, you can setup multifactor authentication in your User Profile area of Keycloak. Log into OpenRMF® OSS, go to your profile and then click the Authenticator menu on the left. Use Google Authenticator or FreeOTP to scan the barcode and follow the instructions on the screen to enable MFA. ",
+    "content": ". For further security, you can setup multifactor authentication in your User Profile area of Keycloak. Log into AUT0-CH, go to your profile and then click the Authenticator menu on the left. Use Google Authenticator or FreeOTP to scan the barcode and follow the instructions on the screen to enable MFA. ",
     "url": "/help/users.html#multifactor-authentication---authenticator",
     "relUrl": "/users.html#multifactor-authentication---authenticator"
   },"74": {
     "doc": "What's New",
     "title": "What’s New with OpenRMF®",
-    "content": "Please refer to the OpenRMF® OSS Projects listing on GitHub for more information on feature updates and timeline. ",
+    "content": "Please refer to the AUT0-CH Projects listing on GitHub for more information on feature updates and timeline. ",
     "url": "/help/whatsnew.html#whats-new-with-openrmf",
     "relUrl": "/whatsnew.html#whats-new-with-openrmf"
   },"75": {

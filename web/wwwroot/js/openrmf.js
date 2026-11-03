@@ -1858,7 +1858,7 @@ function downloadChart(element) {
 	var img = document.getElementById(element).toDataURL("image/jpg");
 	var element = document.createElement('a');
 	element.setAttribute('href', img);
-	element.setAttribute('download', "OpenRMFChart.jpg");
+	element.setAttribute('download', "AUT0-CH-Chart.jpg");
 	element.style.display = 'none';
 	document.body.appendChild(element);
 	element.click();

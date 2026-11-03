@@ -1,22 +1,22 @@
 ---
 layout: default
-title: Navigation in OpenRMF
+title: Navigation in AUT0-CH
 nav_order: 10
 ---
 
-# The OpenRMF<sup>&reg;</sup> OSS User Interface at a Glance
+# The AUT0-CH User Interface at a Glance
 
-![OpenRMF OSS Navigation](./assets/navigation.png)
+![AUT0-CH Navigation](./assets/navigation.png)
 
-The main navigation is based on the Pike Admin responsive template. Once you login you have a menu of options on the left. Click the hamburger 3-line icon to make this menu collapse down to just icons. In the top far right are two icons. The help icon launches the OpenRMF<sup>&reg;</sup> OSS Docs site in GitHub.io. 
+The main navigation is based on the Pike Admin responsive template. Once you login you have a menu of options on the left. Click the hamburger 3-line icon to make this menu collapse down to just icons. In the top far right are two icons. The help icon launches the AUT0-CH Docs site in GitHub.io. 
 
-![OpenRMF OSS Profile Menu](./assets/view-profile.png)
+![AUT0-CH Profile Menu](./assets/view-profile.png)
 
 The second icon in that row is the person icon. Click that to find the User Profile and Logout links. The User Profile opens the Keycloak user profile page that is explained on the [User Profile](./users.md) page. And the logout link will remove your session and take you to the logout page. 
 
 
 ## Accessing Online Help
 
-![OpenRMF OSS Help](./assets/online-help.png)
+![AUT0-CH Help](./assets/online-help.png)
 
-The GitHub.io page for OpenRMF<sup>&reg;</sup> is this site here. This is linked into the help icon in the menu bar on each page in the top right of the screen.
+The GitHub.io page for AUT0-CH<sup>&reg;</sup> is this site here. This is linked into the help icon in the menu bar on each page in the top right of the screen.

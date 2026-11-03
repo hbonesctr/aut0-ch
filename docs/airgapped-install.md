@@ -1,4 +1,6 @@
-# Install OpenRMF<sup>&reg;</sup> OSS in an Air-Gapped System
+# Install AUT0-CH in an Air-Gapped System
+
+> AUT0-CH: use `tools/build-images.sh` and `tools/airgap-bundle.sh` from the repository root. The bundle script reads the image list straight from `scripts/docker-compose.yml`, which is the source of truth for the list below.
 
 Given who this application is for, you may very well have a "disconnected from the Internet" type of setup. You can still use all these containers and such on that system. However, you will need to do a bit of work as outlined below. you also will still need the ZIP file contents from one of the releases that has the start scripts, docker-compose, Prometheus file, and initialization scripts. Including the .env file that has to have a pointer to the Keycloak server setup as well. 
 
@@ -25,20 +27,20 @@ Take all the image files from above and put onto a DVD / CD / USB (if allowed) a
 
 ## Application Container Images you will need to have
 For OpenRMF<sup>&reg;</sup> OSS (Please check the scripts/docker-compose.yml for the latest information.):
-* cingulara/openrmf-web:1.14.01
+* localhost/aut0-ch/web:0.1.0 (AUT0-CH build)
 * cingulara/openrmf-api-scoring:1.14.02
 * cingulara/openrmf-api-template:1.14.04
-* cingulara/openrmf-api-read:1.14.02
+* localhost/aut0-ch/api-read:0.1.0 (AUT0-CH build)
 * cingulara/openrmf-api-controls:1.14.02
 * cingulara/openrmf-api-audit:1.14.02
-* cingulara/openrmf-api-report:1.14.02
+* localhost/aut0-ch/api-reports:0.1.0 (AUT0-CH build)
 * cingulara/openrmf-msg-score:1.14.01
 * cingulara/openrmf-msg-compliance:1.14.01
 * cingulara/openrmf-msg-controls:1.14.01
 * cingulara/openrmf-msg-template:1.14.01
 * cingulara/openrmf-msg-system:1.14.01
 * cingulara/openrmf-msg-audit:1.14.01
-* cingulara/openrmf-msg-report:1.14.01
+* localhost/aut0-ch/msg-reports:0.1.0 (AUT0-CH build)
 * cingulara/mongo:7.0.32-jammy-nonroot
 * nats:2.12.8-alpine3.22
 * natsio/prometheus-nats-exporter:0.19.2

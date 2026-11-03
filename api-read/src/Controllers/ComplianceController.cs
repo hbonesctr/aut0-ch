@@ -157,7 +157,7 @@ namespace openrmf_read_api.Controllers
                             DocumentFormat.OpenXml.Spreadsheet.Cell refCell = null;
                             DocumentFormat.OpenXml.Spreadsheet.Cell newCell = null;
 
-                            DocumentFormat.OpenXml.Spreadsheet.Row row = MakeTitleRow("OpenRMF by Cingulara and Tutela");
+                            DocumentFormat.OpenXml.Spreadsheet.Row row = MakeTitleRow("AUT0-CH (derived from OpenRMF OSS by Cingulara and Tutela)");
                             sheetData.Append(row);
                             row = MakeXLSXInfoRow("System Package", sg.title,2);
                             sheetData.Append(row);

@@ -21,7 +21,7 @@
     }
   ],
   "id": null,
-  "title": "OpenRMF Professional NATS Server Dashboard",
+  "title": "AUT0-CH NATS Server Dashboard",
   "description": "NATS Server Dashboard for use with the Prometheus NATS Exporter",
   "tags": [],
   "style": "dark",

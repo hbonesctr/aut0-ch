@@ -14,11 +14,11 @@ The Upload page is available to users with the Administrator or Editor role assi
 
 > Note: The Nessus Patch Management scan results file `*.nessus` is uploaded when you add or edit a System Package, not via the Upload page. 
 
-## Process of Uploading SCAP results (XCCDF format .xml) or CKL files (.ckl) in OpenRMF<sup>&reg;</sup> OSS
+## Process of Uploading SCAP results (XCCDF format .xml) or CKL files (.ckl) in AUT0-CH
 * [DISA SCAP Scan Information](https://public.cyber.mil/stigs/scap/)
 * [Tennable's Nessus SCAP Scan Information](https://community.tenable.com/s/article/How-to-create-a-SCAP-scan)
 
-![OpenRMF OSS Upload of SCAP Scan Results](./assets/scap-process.png)
+![AUT0-CH Upload of SCAP Scan Results](./assets/scap-process.png)
 
 ## Upload Checklists or SCAP XCCDF files
 
@@ -32,7 +32,7 @@ If you upload an XCCDF XML SCAP scan result file (DISA or Nessus SCAP), that fil
 
 > Note: _You must have a single checklist per CKL file_. The Java Viewer from DISA allows more than one, however this makes your Cybersecurity personnel's job harder to do. And it makes the issues harder to track. This tool looks for one checklist per CKL file if that is what you are uploading. And it will save you time from having to separate the checklists later when asked to do so by those very same Cybersecurity personnel!
 
-![OpenRMF OSS Upload of Checklists](./assets/upload-checklist-xccdf.png)
+![AUT0-CH Upload of Checklists](./assets/upload-checklist-xccdf.png)
 
 When you upload a new SCAP .xml result or CKL checklist to a system package, it compares the hostname, checklist type, "is web or database" as well as site and instance for the web or database to note uniqueness of a checklist. 
 
@@ -48,16 +48,16 @@ Be mindful of the uniqueness of the checklist rules:
 
 ## Uploading Templates
 
-![OpenRMF OSS Upload of Templates](./assets/upload-template.png)
+![AUT0-CH Upload of Templates](./assets/upload-template.png)
 
-You can upload a checklist file as a Template to start from within the system as well. You can use Templates in OpenRMF<sup>&reg;</sup> OSS for a starting point for your checklists. A great example would be you have an infrastructure package and a platform-as-a-service package that your application(s) run on. That infrastructure and PaaS have known good checklists as a baseline that application owners use as a starting point and adjust the remaining vulnerability items accordingly.  IT personnel would download this template and then fill out remaining items based on their software or system.
+You can upload a checklist file as a Template to start from within the system as well. You can use Templates in AUT0-CH for a starting point for your checklists. A great example would be you have an infrastructure package and a platform-as-a-service package that your application(s) run on. That infrastructure and PaaS have known good checklists as a baseline that application owners use as a starting point and adjust the remaining vulnerability items accordingly.  IT personnel would download this template and then fill out remaining items based on their software or system.
 
 To upload you go to the Template Upload section and enter a title and description for the template. Then click the Choose file and upload the template. You can only upload one template at a time. 
 
 ## Uploading Nessus / ACAS Scans
 
-![OpenRMF OSS Upload of Nessus / ACAS Scans](./assets/upload-nessus-scan-file.png)
+![AUT0-CH Upload of Nessus / ACAS Scans](./assets/upload-nessus-scan-file.png)
 
-Once you have a System Package record, you can click the Edit button for the system to upload a `*.nessus` file for your scan output. OpenRMF<sup>&reg;</sup> OSS will save your file (a single file for the OSS version) and generate export listing for the whole system or by host into MS Excel files. You also can run reports on the Nessus file based on your system in the Reports area. 
+Once you have a System Package record, you can click the Edit button for the system to upload a `*.nessus` file for your scan output. AUT0-CH will save your file (a single file for the OSS version) and generate export listing for the whole system or by host into MS Excel files. You also can run reports on the Nessus file based on your system in the Reports area. 
 
-The Dashboard will also show the total number of Critical, High, Medium, and Low items once your have uploaded a `.nessus` file as well. Remember, OpenRMF<sup>&reg;</sup> OSS stores a single file. So upload the most up-to-date file that has all your servers in the listing. 
+The Dashboard will also show the total number of Critical, High, Medium, and Low items once your have uploaded a `.nessus` file as well. Remember, AUT0-CH stores a single file. So upload the most up-to-date file that has all your servers in the listing. 

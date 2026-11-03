@@ -105,8 +105,8 @@ namespace openrmf_read_api
             // Register the Swagger generator, defining one or more Swagger documents
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "OpenRMF Read API", Version = "v1", 
-                    Description = "The Read API that goes with the OpenRMF OSS Application",
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "AUT0-CH Read API", Version = "v1", 
+                    Description = "The Read API that goes with the AUT0-CH application (derived from OpenRMF OSS)",
                     Contact = new OpenApiContact
                     {
                         Name = "Dale Bingham",
@@ -221,7 +221,7 @@ namespace openrmf_read_api
             // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.), specifying the Swagger JSON endpoint.
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "OpenRMF Read API V1");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "AUT0-CH Read API V1");
             });
 
             // allow response caching directives in the API Controllers

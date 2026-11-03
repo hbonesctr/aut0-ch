@@ -71,16 +71,16 @@ docker exec -i $keycontainer /opt/keycloak/bin/kcadm.sh create realms -s realm=o
 echo
 echo "Setting Require SSL to none (off)..."
 docker exec -i $keycontainer /opt/keycloak/bin/kcadm.sh update realms/openrmf --set 'sslRequired=none'
-docker exec -i $keycontainer /opt/keycloak/bin/kcadm.sh update realms/openrmf --set 'displayName=OpenRMF OSS'
-docker exec -i $keycontainer /opt/keycloak/bin/kcadm.sh update realms/openrmf --set 'displayNameHtml=OpenRMF<sup>&reg;</sup> OSS'
-docker exec -i $keycontainer /opt/keycloak/bin/kcadm.sh update realms/openrmf --set 'loginTheme=openrmf'
+docker exec -i $keycontainer /opt/keycloak/bin/kcadm.sh update realms/openrmf --set 'displayName=AUT0-CH'
+docker exec -i $keycontainer /opt/keycloak/bin/kcadm.sh update realms/openrmf --set 'displayNameHtml=AUT0-CH'
+docker exec -i $keycontainer /opt/keycloak/bin/kcadm.sh update realms/openrmf --set 'loginTheme=keycloak.v2'
 docker exec -i $keycontainer /opt/keycloak/bin/kcadm.sh update realms/openrmf --set 'accountTheme=keycloak.v3'
 docker exec -i $keycontainer /opt/keycloak/bin/kcadm.sh update realms/master --set 'sslRequired=none'
 docker exec -i $keycontainer /opt/keycloak/bin/kcadm.sh update realms/master --set 'accountTheme=keycloak.v3'
 docker exec -i $keycontainer /opt/keycloak/bin/kcadm.sh update realms/openrmf --set 'adminTheme=keycloak.v2'
 docker exec -i $keycontainer /opt/keycloak/bin/kcadm.sh update realms/master --set 'adminTheme=keycloak.v2'
-docker exec -i $keycontainer /opt/keycloak/bin/kcadm.sh update realms/master --set 'loginTheme=openrmf'
-docker exec -i $keycontainer /opt/keycloak/bin/kcadm.sh update realms/master --set 'displayNameHtml=OpenRMF<sup>&reg;</sup> OSS User Administration'
+docker exec -i $keycontainer /opt/keycloak/bin/kcadm.sh update realms/master --set 'loginTheme=keycloak.v2'
+docker exec -i $keycontainer /opt/keycloak/bin/kcadm.sh update realms/master --set 'displayNameHtml=AUT0-CH User Administration'
 ##END Disable SSL Requirement
 
 ##BEGIN Create Roles

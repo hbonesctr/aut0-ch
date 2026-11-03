@@ -1,0 +1,43 @@
+AUT0-CH (Another Useless Tool Zero - Cyber Hygiene)
+====================================================
+
+AUT0-CH is a modified version of OpenRMF(R) OSS.
+
+  Upstream project : OpenRMF OSS, https://github.com/Cingulara
+  Upstream authors : Cingulara and Tutela (Dale Bingham and contributors)
+  Upstream license : GNU General Public License v3.0
+  OpenRMF(R) is a registered trademark of its owner. AUT0-CH is not affiliated
+  with, endorsed by, or supported by Cingulara, Tutela, or Soteria Software.
+
+Modification notice (GPLv3 section 5(a))
+----------------------------------------
+This work was modified by Hector L. Bones beginning 2026-11-03.
+
+Imported upstream components (git subtree, history preserved):
+
+  Folder        Upstream repository                         Base commit
+  docs/         Cingulara/openrmf-docs (via hbonesctr fork)  0074d94
+  api-read/     Cingulara/openrmf-api-read                  6a07e30
+  api-reports/  Cingulara/openrmf-api-reports               0ec6091
+  msg-reports/  Cingulara/openrmf-msg-reports               d66582f
+  web/          Cingulara/openrmf-web                       7ad40eb8
+
+Changes made in 0.1.0 (2026-11-03):
+  - Rebranded user-facing text, page titles, help pages, logo and favicons
+    from "OpenRMF OSS" to "AUT0-CH". Original OpenRMF logo artwork removed.
+  - Removed the OpenRMF Professional advertising from the web UI footer and
+    logout page.
+  - Excel export document metadata, Swagger titles, Grafana dashboard titles,
+    and Keycloak realm display names now read "AUT0-CH".
+  - Keycloak login/welcome theme switched from the upstream "openrmf" theme to
+    the stock Keycloak theme.
+  - docker-compose.yml runs locally built AUT0-CH images for web, api-read,
+    api-reports, and msg-reports; all other services use stock upstream images.
+
+Intentionally unchanged (compatibility with stock upstream services and data):
+  NATS subjects (openrmf.*), MongoDB database/user names, Keycloak realm and
+  client id "openrmf", compose service/container names, C# namespaces, and
+  Prometheus metric names.
+
+Each source file retains its original copyright and license notices. The full
+license text is in LICENSE.

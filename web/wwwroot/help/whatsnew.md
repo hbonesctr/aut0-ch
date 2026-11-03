@@ -4,20 +4,20 @@ title: What's New
 nav_order: 2
 ---
 
-# What's New with OpenRMF<sup>&reg;</sup>
+# What's New with AUT0-CH<sup>&reg;</sup>
 
-Please refer to the <a href="https://github.com/Cingulara?tab=projects" target="_blank">OpenRMF<sup>&reg;</sup> OSS Projects listing on GitHub</a> for more information on feature updates and timeline.
+Please refer to the <a href="https://github.com/Cingulara?tab=projects" target="_blank">AUT0-CH Projects listing on GitHub</a> for more information on feature updates and timeline.
 
 ## Version 1.14.01 (Security Update)
 Version 1.14.01 has the following added features and fixes:
-* Updated Keycloak v26.5.7 theme for OpenRMF OSS
+* Updated Keycloak v26.5.7 theme for AUT0-CH
 * Updated base images for web, code
 * Updated 3rd party infrastructure images
 * Latest DISA Templates as of April 10, 2026
 
 ## Version 1.14 (Security Update)
 Version 1.14 has the following added features and fixes:
-* Updated Keycloak v26.4.4 theme for OpenRMF OSS
+* Updated Keycloak v26.4.4 theme for AUT0-CH
 * Updated base images for web, code
 * Updated 3rd party infrastructure images
 * Updated matching SCAP to DISA Checklist Templates on naming conventions
@@ -40,7 +40,7 @@ Version 1.13 has the following added features and fixes:
 * Update the CCI listing to the latest from DISA January 2025
 * Latest DISA Templates as of February 28, 2025
 * Migrated code to .NET 8 baseline
-* Added the OpenRMF OSS logo
+* Added the AUT0-CH logo
 * Updated base images when compiling for cleaner vulnerability scans
 
 ## Version 1.12 (Security and Unique Checklist Update)
@@ -48,7 +48,7 @@ Version 1.12 has the following added features and fixes:
 * Added unique checklist match based on system package, hostname, checklist/STIG type, web or database, site, and instance fields
 * Updated the checklist naming to account for unique web or database fields
 * Updated Keycloak v25.0.4 `KC_PROXY_HEADERS=xforwarded` environment variable from `KC_PROXY=edge`
-* Updated Keycloak v25.0.5 theme for OpenRMF OSS
+* Updated Keycloak v25.0.5 theme for AUT0-CH
 * Updated base images for web, code
 * Updated 3rd party infrastructure images
 * Updated matching SCAP to DISA Checklist Templates on naming conventions
@@ -144,7 +144,7 @@ Version 1.5.4 added the updated DISA Templates from April 27 and April 28 2021. 
 
 ## Version 1.5.3
 Version 1.5.3 included these updates:
-* Keycloak v 12.0.3 OpenRMF Theme
+* Keycloak v 12.0.3 AUT0-CH Theme
 * Download All CKL into ZIP for a System Package
 * Merge POAM and RAR fields into one for XLSX download
 * Table cell click for filtering Checklists and Templates Vulnerabilities listing
@@ -190,7 +190,7 @@ Version 1.2 was also a security fix primarily with some updated functionality as
 * .NET Core 3.1 update with Debian 10 based containers
 * Updated .NET Core 3.1 components such as Jaeger client, Swashbuckle, etc.
 * Keycloak 10 upgrade from 7.0
-* Keycloak theme for OpenRMF for seamless look-and-feel interaction
+* Keycloak theme for AUT0-CH for seamless look-and-feel interaction
 * Header Security fixes from an active scan of the web application 
 * Compliance Summary buttons are interactive for filtering now
 * Help documentation is now local to the application, not up on github.io pages
@@ -207,6 +207,6 @@ Version 1.1 was a security fix primarily with some updated functionality as outl
 
 ## Version 1.0
 
-Version 1.0 of OpenRMF Core has these updates below:
+Version 1.0 of AUT0-CH Core has these updates below:
 * Fixing a bug on the Web UI updating Vulnerabilities via the web form in a checklist
 * Updating the version descriptions to 1.0 throughout the codebase

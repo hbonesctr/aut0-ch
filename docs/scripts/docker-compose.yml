@@ -3,7 +3,7 @@ version : '3.8'
 services:
 ### 1 Web Front End Container
   openrmf-web:
-    image: docker.io/cingulara/openrmf-web:1.14.01
+    image: localhost/aut0-ch/web:0.1.0  # AUT0-CH build, forked from openrmf-web 1.14.01
     # image: cingulara/openrmf-web:1.14.01-privileged # this is to eventually make HTTPS 443 in a non-privileged manner
     container_name: openrmf-web
     restart: on-failure:5
@@ -64,7 +64,7 @@ services:
       - openrmf
 
   openrmfapi-read:
-    image: docker.io/cingulara/openrmf-api-read:1.14.02
+    image: localhost/aut0-ch/api-read:0.1.0  # AUT0-CH build, forked from openrmf-api-read 1.14.02
     container_name: openrmf-read-api
     restart: on-failure:5
     ports:
@@ -119,7 +119,7 @@ services:
       - openrmf
 
   openrmfapi-report:
-    image: docker.io/cingulara/openrmf-api-report:1.14.02
+    image: localhost/aut0-ch/api-reports:0.1.0  # AUT0-CH build, forked from openrmf-api-report 1.14.02
     container_name: openrmf-report-api
     restart: on-failure:5
     ports:
@@ -228,7 +228,7 @@ services:
       - openrmf
 
   openrmfmsg-reports:
-    image: docker.io/cingulara/openrmf-msg-reports:1.14.01
+    image: localhost/aut0-ch/msg-reports:0.1.0  # AUT0-CH build, forked from openrmf-msg-reports 1.14.01
     container_name: openrmf-report-nats-message-client
     restart: on-failure:5
     environment:
@@ -430,7 +430,6 @@ services:
     restart: on-failure:10
     command:
       - start
-      - --spi-theme-welcome-theme=openrmf
     ports:
       - "8080"
     environment:

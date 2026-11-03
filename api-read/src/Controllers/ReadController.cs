@@ -172,7 +172,7 @@ namespace openrmf_read_api.Controllers
                         DocumentFormat.OpenXml.Spreadsheet.Cell refCell = null;
                         DocumentFormat.OpenXml.Spreadsheet.Cell newCell = null;
 
-                        DocumentFormat.OpenXml.Spreadsheet.Row row = MakeTitleRow("OpenRMF by Cingulara and Tutela");
+                        DocumentFormat.OpenXml.Spreadsheet.Row row = MakeTitleRow("AUT0-CH (derived from OpenRMF OSS by Cingulara and Tutela)");
                         sheetData.Append(row);
                         if (artifacts != null && artifacts.Count() > 0) {
                             row = MakeXLSXInfoRow("Checklist Listing", artifacts.FirstOrDefault().systemTitle, 2);
@@ -712,7 +712,7 @@ namespace openrmf_read_api.Controllers
                         DocumentFormat.OpenXml.Spreadsheet.Cell refCell = null;
                         DocumentFormat.OpenXml.Spreadsheet.Cell newCell = null;
 
-                        DocumentFormat.OpenXml.Spreadsheet.Row row = MakeTitleRow("OpenRMF by Cingulara and Tutela");
+                        DocumentFormat.OpenXml.Spreadsheet.Row row = MakeTitleRow("AUT0-CH (derived from OpenRMF OSS by Cingulara and Tutela)");
                         sheetData.Append(row);
                         row = MakeXLSXInfoRow("Nessus Patch Summary Export", DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss tt"),2);
                         sheetData.Append(row);
@@ -918,7 +918,7 @@ namespace openrmf_read_api.Controllers
                         DocumentFormat.OpenXml.Spreadsheet.Cell newCell = null;
 
                         _logger.LogInformation("ExportSystemTestPlan({0}) setting title XLSX information", systemGroupId);
-                        DocumentFormat.OpenXml.Spreadsheet.Row row = MakeTitleRow("OpenRMF by Cingulara and Tutela");
+                        DocumentFormat.OpenXml.Spreadsheet.Row row = MakeTitleRow("AUT0-CH (derived from OpenRMF OSS by Cingulara and Tutela)");
                         sheetData.Append(row);
                         row = MakeXLSXInfoRow("System Test Plan Summary", DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss tt"),2);
                         sheetData.Append(row);
@@ -1233,7 +1233,7 @@ namespace openrmf_read_api.Controllers
                                 strClaimName = claim.Subject.Claims.Where(x => x.Type.Contains("emailaddress")).FirstOrDefault().Value;
                         }
                         _logger.LogInformation("ExportSystemPOAM({0}) setting title XLSX information", systemGroupId);
-                        // DocumentFormat.OpenXml.Spreadsheet.Row row = MakeTitleRow("OpenRMF by Cingulara and Tutela");
+                        // DocumentFormat.OpenXml.Spreadsheet.Row row = MakeTitleRow("AUT0-CH (derived from OpenRMF OSS by Cingulara and Tutela)");
                         // sheetData.Append(row);
                         // row = MakePOAMInfoRow("Date Created:",DateTime.Now.ToString("MM/dd/yyyy hh:mm:ss tt"),"System Type:","","OMB Project ID:","",2);
                         // sheetData.Append(row);
@@ -2121,7 +2121,7 @@ namespace openrmf_read_api.Controllers
                             DocumentFormat.OpenXml.Spreadsheet.Cell refCell = null;
                             DocumentFormat.OpenXml.Spreadsheet.Cell newCell = null;
 
-                            DocumentFormat.OpenXml.Spreadsheet.Row row = MakeTitleRow("OpenRMF by Cingulara and Tutela");
+                            DocumentFormat.OpenXml.Spreadsheet.Row row = MakeTitleRow("AUT0-CH (derived from OpenRMF OSS by Cingulara and Tutela)");
                             sheetData.Append(row);
                             row = MakeXLSXInfoRow("System Name", art.systemTitle,2);
                             sheetData.Append(row);
