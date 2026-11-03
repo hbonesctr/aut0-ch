@@ -1,3 +1,5 @@
+<p align="center"><img src="docs/branding/aut0-ch-wordmark.svg" alt="AUT0-CH" width="520"></p>
+
 # AUT0-CH
 **Another Useless Tool Zero – Cyber Hygiene**
 
@@ -15,6 +17,7 @@ It is a **modified version of [OpenRMF® OSS](https://github.com/Cingulara)** (G
 | `msg-reports/` | NATS client that builds the reporting data (includes the second Nessus parser) | Cingulara/openrmf-msg-reports |
 | `web/` | NGINX + static web UI | Cingulara/openrmf-web |
 | `tools/` | `build-images.sh`, `airgap-bundle.sh` | — |
+| `docs/branding/` | Logo SVGs (mark, wordmark, reverse), PNG exports, social preview, original concept images | — |
 
 All other services (scoring, template, controls, audit APIs; score/compliance/controls/template/system/audit message clients; MongoDB; NATS; Keycloak; Postgres; Prometheus; Grafana) run as **stock upstream images**. DISA template updates therefore still arrive by pulling newer upstream `api-template` / `msg-template` images.
 

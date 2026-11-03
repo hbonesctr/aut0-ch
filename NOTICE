@@ -25,6 +25,8 @@ Imported upstream components (git subtree, history preserved):
 Changes made in 0.1.0 (2026-11-03):
   - Rebranded user-facing text, page titles, help pages, logo and favicons
     from "OpenRMF OSS" to "AUT0-CH". Original OpenRMF logo artwork removed.
+  - New AUT0-CH logo (hex-nut slashed zero) and wordmark set in Montserrat
+    ExtraBold (SIL OFL 1.1), converted to outlines; sources in docs/branding/.
   - Removed the OpenRMF Professional advertising from the web UI footer and
     logout page.
   - Excel export document metadata, Swagger titles, Grafana dashboard titles,
