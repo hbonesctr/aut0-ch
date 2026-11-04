@@ -19,4 +19,4 @@ The second icon in that row is the person icon. Click that to find the User Prof
 
 ![AUT0-CH Help](./assets/online-help.png)
 
-The GitHub.io page for AUT0-CH<sup>&reg;</sup> is this site here. This is linked into the help icon in the menu bar on each page in the top right of the screen.
+The GitHub.io page for AUT0-CH is this site here. This is linked into the help icon in the menu bar on each page in the top right of the screen.

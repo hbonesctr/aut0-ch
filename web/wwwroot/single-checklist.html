@@ -556,13 +556,13 @@
 					$('#checklistFile').filer({
 						limit: 1,
 						maxSize: 10,
-						extensions: ['ckl', 'xml'],
+						extensions: ['ckl', 'cklb', 'xml'],
 						changeInput: true,
 						showThumbs: true,
 						captions: {
 							errors: {
 								filesLimit: "Only {{fi-limit}} files are allowed to be uploaded at a time.",
-								filesType: "Only Checklist *.CKL and SCAP scan XCCDF *.XML files can be uploaded.",
+								filesType: "Only Checklist *.CKL / *.CKLB and SCAP scan XCCDF *.XML files can be uploaded.",
 								filesSize: "{{fi-name}} is too large! Please upload a file up to {{fi-maxSize}} MB.",
 								filesSizeAll: "Files you have chosen are too large! Please upload a file up to {{fi-maxSize}} MB."
 							}

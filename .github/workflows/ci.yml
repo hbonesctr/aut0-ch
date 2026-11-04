@@ -1,0 +1,74 @@
+# AUT0-CH continuous integration.
+# Runs on every pull request and every push to main, on GitHub's servers (nothing to install locally).
+#   1. unit-tests : dotnet test for the forked .NET services
+#   2. smoke-test : builds the AUT0-CH images, starts the whole stack, logs in, uploads a CKLB,
+#                   checks scoring and CKL download (tools/e2e/smoke-test.sh)
+#   3. images     : on main (or by hand), saves the four AUT0-CH images as a downloadable artifact
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      export_images:
+        description: "Save the AUT0-CH images as a downloadable artifact"
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  unit-tests:
+    name: Unit tests (${{ matrix.project }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        project: [api-read, api-reports, msg-reports]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "8.0.x"
+      - name: Test
+        run: dotnet test ${{ matrix.project }}/tests --logger "console;verbosity=normal"
+
+  smoke-test:
+    name: End-to-end smoke test
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build AUT0-CH images
+        run: tools/build-images.sh
+      - name: Run smoke test (start stack, log in, upload CKLB, verify)
+        run: sudo -E tools/e2e/smoke-test.sh
+
+  images:
+    name: Export images
+    if: github.ref == 'refs/heads/main' || inputs.export_images
+    needs: [unit-tests, smoke-test]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build and save AUT0-CH images
+        run: |
+          tools/build-images.sh
+          mkdir -p out
+          docker save -o out/aut0-ch-images.tar \
+            localhost/aut0-ch/web:0.1.0 localhost/aut0-ch/api-read:0.1.0 \
+            localhost/aut0-ch/api-reports:0.1.0 localhost/aut0-ch/msg-reports:0.1.0
+          gzip -1 out/aut0-ch-images.tar
+          (cd out && sha256sum aut0-ch-images.tar.gz > SHA256SUMS)
+      - uses: actions/upload-artifact@v4
+        with:
+          name: aut0-ch-images-${{ github.sha }}
+          path: out/
+          retention-days: 30
