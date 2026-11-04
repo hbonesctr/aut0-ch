@@ -111,10 +111,10 @@ s=[x for x in json.load(sys.stdin) if x.get("title")=="CI Smoke Test"]
 print(s[0]["internalIdString"] if s else "")')
 [ -n "$SG" ] || fail "system package 'CI Smoke Test' not found"
 echo "system package id: $SG"
-SYS=$(curl -fsS "${AUTH[@]}" "$BASE/api/read/artifact/systems/$SG")
-ART=$(python3 - "$SYS" <<'PY'
+curl -fsS "${AUTH[@]}" "$BASE/api/read/artifact/systems/$SG" -o "$WORK/system.json" || fail "could not list the system's checklists"
+ART=$(python3 - "$WORK/system.json" <<'PY'
 import json, sys
-arts = json.loads(sys.argv[1])
+arts = json.load(open(sys.argv[1]))
 assert len(arts) == 1, f"expected 1 checklist, found {len(arts)}"
 a = arts[0]
 print("checklist:", a.get("title"), "| host:", a.get("hostName"), "| type:", a.get("stigType"), "| release:", a.get("stigRelease"), file=sys.stderr)
