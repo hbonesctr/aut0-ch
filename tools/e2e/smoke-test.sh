@@ -119,7 +119,9 @@ assert len(arts) == 1, f"expected 1 checklist, found {len(arts)}"
 a = arts[0]
 print("checklist:", a.get("title"), "| host:", a.get("hostName"), "| type:", a.get("stigType"), "| release:", a.get("stigRelease"), file=sys.stderr)
 assert a.get("hostName") == "ci-rhel9", a.get("hostName")
-assert "Red Hat Enterprise Linux 9" in (a.get("stigType") or ""), a.get("stigType")
+# upstream shortens "Red Hat Enterprise Linux" to "REL" for every upload type
+assert a.get("stigType") == "REL 9 STIG", a.get("stigType")
+assert (a.get("stigRelease") or "").startswith("R10"), a.get("stigRelease")
 print(a["internalIdString"])
 PY
 ) || fail "checklist record check failed"
