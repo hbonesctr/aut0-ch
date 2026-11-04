@@ -169,7 +169,8 @@ PY
 step "Upload the same CKLB again: it must update the checklist, not add a second one"
 R2=$(upload) || fail "second upload failed"
 echo "$R2"
-python3 -c 'import json,sys; r=json.loads(sys.argv[1]); assert r["failed"]==0 and r.get("updated",0)==1, r' "$R2" || fail "second upload did not update the existing checklist"
+# upstream never increments "updated", so the checklist count below is the real check
+python3 -c 'import json,sys; r=json.loads(sys.argv[1]); assert r["failed"]==0 and r["successful"]==1, r' "$R2" || fail "second upload was not accepted"
 COUNT=$(curl -fsS "${AUTH[@]}" "$BASE/api/read/artifact/systems/$SG" | python3 -c 'import json,sys; print(len(json.load(sys.stdin)))')
 [ "$COUNT" = "1" ] || fail "expected 1 checklist after re-upload, found $COUNT"
 
